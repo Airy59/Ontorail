@@ -6,8 +6,8 @@ from rdflib.namespace import Namespace, NamespaceManager
 MyGraph = rdflib.Graph()
 
 # Binding with Railway Objects Semantic Dictionary ontology
-rooNs = Namespace('http://webprotege.stanford.edu/project/ErEJMiB9aKwG6oPN4WkYE')
-MyGraph.bind("roo", rooNs)
+nsRoo = Namespace('http://webprotege.stanford.edu/project/ErEJMiB9aKwG6oPN4WkYE')
+MyGraph.bind("roo", nsRoo)
 
 # shorthands for upper ontologies
 MyGraph.bind("rdf", RDF)
@@ -32,7 +32,7 @@ polarization = BNode('polarization')
 MyGraph.add((balise, RDFS.label, Literal("Balise (signalling)", lang='en')))
 MyGraph.add((balise, ElementType, Literal("O")))
 
-MyGraph.add((Antenna, rooNs.hasProperty, polarization))
+MyGraph.add((Antenna, nsRoo.hasProperty, polarization))
 
 MyGraph.add((pole, RDFS.label, Literal("Pole", lang='en')))
 MyGraph.add((pole, RDFS.comment, Literal("some pole or mast")))
