@@ -15,7 +15,6 @@ MyGraph.bind("rdfs", RDFS)
 MyGraph.bind("xsd", XSD)
 
 # Local stuff
-MyGraph.bind("", "http://mybase")
 
 namespace_manager = NamespaceManager(MyGraph)
 
@@ -28,6 +27,7 @@ pole = BNode('pole')
 ElementType = BNode('ElementType')
 Antenna = BNode('antenna')
 polarization = BNode('polarization')
+print('polarization blank node : ', polarization.n3(namespace_manager), '\n')
 
 MyGraph.add((balise, RDFS.label, Literal("Balise (signalling)", lang='en')))
 MyGraph.add((balise, ElementType, Literal("O")))
@@ -38,8 +38,8 @@ MyGraph.add((pole, RDFS.label, Literal("Pole", lang='en')))
 MyGraph.add((pole, RDFS.comment, Literal("some pole or mast")))
 
 # Save (serialize) graph
-s = MyGraph.serialize(format='turtle', n)
+s = str(MyGraph.serialize(format='n3'), 'utf-8')
 print(s)
 outfile = open("testTurtle.ttl", 'w+t', newline=None)
-outfile.write(str(s))
+outfile.write(s)
 outfile.close()

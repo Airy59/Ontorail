@@ -1,1 +1,15 @@
-b'@prefix : <http://mybase> .\n@prefix ns1: <http://webprotege.stanford.edu/project/> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix roo: <http://webprotege.stanford.edu/project/ErEJMiB9aKwG6oPN4WkYE> .\n@prefix xml: <http://www.w3.org/XML/1998/namespace> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n[] ns1:ErEJMiB9aKwG6oPN4WkYEhasProperty [ ] .\n\n[] rdfs:label "Balise (signalling)"@en ;\n    [ ] "O" .\n\n[] rdfs:label "Pole"@en ;\n    rdfs:comment "some pole or mast" .\n\n'
+@prefix ns1: <http://webprotege.stanford.edu/project/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix roo: <http://webprotege.stanford.edu/project/ErEJMiB9aKwG6oPN4WkYE> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+[] ns1:ErEJMiB9aKwG6oPN4WkYEhasProperty [ ] .
+
+[] rdfs:label "Balise (signalling)"@en ;
+    [ ] "O" .
+
+[] rdfs:label "Pole"@en ;
+    rdfs:comment "some pole or mast" .
+
