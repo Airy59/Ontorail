@@ -20,6 +20,7 @@ MyGraph.bind("", "http://mybase")
 namespace_manager = NamespaceManager(MyGraph)
 
 # TODO: Load graph from Excel
+# ...
 
 # Add some triples manually
 balise = BNode('balise')
