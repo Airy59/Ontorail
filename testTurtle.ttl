@@ -7,7 +7,8 @@
 
 [] ns1:ErEJMiB9aKwG6oPN4WkYEhasProperty [ ] .
 
-[] rdfs:label "Balise (signalling)"@en ;
+[] rdfs:label "Balise (signalling)"@en,
+        "Balise (signalisation)"@fr ;
     [ ] "O" .
 
 [] rdfs:label "Pole"@en ;

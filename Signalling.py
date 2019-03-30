@@ -27,9 +27,10 @@ pole = BNode('pole')
 ElementType = BNode('ElementType')
 Antenna = BNode('antenna')
 polarization = BNode('polarization')
-print('polarization blank node : ', polarization.n3(namespace_manager), '\n')
+print('polarization blank node : ', polarization.n3(), '\n')
 
 MyGraph.add((balise, RDFS.label, Literal("Balise (signalling)", lang='en')))
+MyGraph.add((balise, RDFS.label, Literal("Balise (signalisation)", lang='fr')))
 MyGraph.add((balise, ElementType, Literal("O")))
 
 MyGraph.add((Antenna, nsRoo.hasProperty, polarization))
