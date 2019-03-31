@@ -1,12 +1,13 @@
 import rdflib
-from rdflib import RDF, RDFS, XSD, BNode, Literal
+from rdflib import RDF, RDFS, XSD, BNode, Literal, URIRef
 from rdflib.namespace import Namespace, NamespaceManager
 
 # Create graph (triple store)
-MyGraph = rdflib.Graph()
+MyGraph = rdflib.Graph(identifier='My_graph')
 
 # Binding with Railway Objects Semantic Dictionary ontology
-nsRoo = Namespace('http://webprotege.stanford.edu/project/ErEJMiB9aKwG6oPN4WkYE')
+MyProtegeRoot = 'http://webprotege.stanford.edu/project/ErEJMiB9aKwG6oPN4WkYE#'
+nsRoo = Namespace(MyProtegeRoot)
 MyGraph.bind("roo", nsRoo)
 
 # shorthands for upper ontologies
@@ -22,16 +23,17 @@ namespace_manager = NamespaceManager(MyGraph)
 # ...
 
 # Add some triples manually
-balise = BNode('balise')
+# balise = BNode('balise')
+balise = URIRef('_:balise')
 pole = BNode('pole')
 ElementType = BNode('ElementType')
 Antenna = BNode('antenna')
 polarization = BNode('polarization')
-print('polarization blank node : ', polarization.n3(), '\n')
+print('polarization blank node : ', polarization.n3(namespace_manager), '\n')
 
 MyGraph.add((balise, RDFS.label, Literal("Balise (signalling)", lang='en')))
 MyGraph.add((balise, RDFS.label, Literal("Balise (signalisation)", lang='fr')))
-MyGraph.add((balise, ElementType, Literal("O")))
+MyGraph.add((balise, nsRoo.ElementType, Literal("O")))
 
 MyGraph.add((Antenna, nsRoo.hasProperty, polarization))
 
