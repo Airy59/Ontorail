@@ -4,12 +4,8 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<_:balise> rdfs:label "Balise (signalling)"@en,
+":TestBalise9" a "Object" ;
+    rdfs:label "Balise (signalling)"@en,
         "Balise (signalisation)"@fr ;
     roo:ElementType "O" .
-
-[] roo:hasProperty [ ] .
-
-[] rdfs:label "Pole"@en ;
-    rdfs:comment "some pole or mast" .
 
