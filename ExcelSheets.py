@@ -3,9 +3,11 @@ import datetime
 import openpyxl
 
 import rdflib
-from rdflib import RDF, RDFS, XSD, BNode, Literal
+from rdflib import RDF, RDFS, XSD, BNode, Literal, URIRef
 
-from Test import MyProtegeRoot, nsRoo, RooGraph
+from References import MyProtegeRoot, nsRoo, RooGraph
+
+from Utils import to_title, remove_gt_lt
 
 
 class DataReqFile:
@@ -31,6 +33,12 @@ class DataReqFile:
 	def cast_to_rdf(self, path, fmt='turtle'):
 		self.RdfFormat = fmt
 		self.Rdf = open(path, 'w+t', newline=None)
+		s = str(self.Graph.serialize(format=fmt), 'utf-8')
+		s = remove_gt_lt(s)
+		print(s)
+		outfile = open(path, 'w+t', newline=None)
+		outfile.write(s)
+		outfile.close()
 
 
 class SIG(DataReqFile):
@@ -42,15 +50,21 @@ class SIG(DataReqFile):
 		super().__init__(path, tab_obj, tab_prop_spec)
 		self.TabPropShared = tab_prop_shared
 		self.SheetPropShared = self.Book[tab_prop_shared]
+		self.Graph = RooGraph(identifier='SIG_graph_')
 
 	def get_functional_categories(self):
 		"""
 		In SIG, objects may belong to several functional categories!
 		"""
-
+		self.Graph.add((to_title('CBI'), RDF.type, Literal('Functional Category')))
+		self.Graph.add((to_title('Block system'), RDF.type, Literal('Functional Category')))
+		self.Graph.add((URIRef(':Train_control_system'), RDF.type, Literal('Functional Category')))
+		self.Graph.add((URIRef(':Traffic_dispatching_system'), RDF.type, Literal('Functional Category')))
 
 	def get_objects(self, first_row, last_row):
-		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row,min_col=1, max_col=)
+		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=9):
+			pass
+			#self.Graph.add((URIRef()))
 
 
 
@@ -58,6 +72,8 @@ class SIG(DataReqFile):
 
 sig = SIG(R'C:\Users\amagn\Desktop\SIG Data\20190322-IFC-SD-005-DataRequirement.xlsx',
           '1-Object_Description ', '2.2-Property_Requirements_Spec', '2.1-Property_Requirement_Shared')
+sig.get_functional_categories()
+sig.cast_to_rdf(R'C:\Users\amagn\OneDrive\Dev\DataRequirementsToRDF\SIG.ttl')
 
 
 
