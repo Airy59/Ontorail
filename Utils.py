@@ -14,9 +14,11 @@ def to_title(s:str) -> str:
 
 def remove_gt_lt(s: str) -> str:
 	"""
-	Removes the < and > from the RDF turtle output
+	Removes the < and > from the RDF turtle output.
+	First step is to identify first occurrence of a subject
 	:param s: the input text file to be processed
 	:return: the RDF-ready file
 	"""
-	sr = s.replace('<:', ':')
-	return sr
+	split_string = s.split(sep='<:', maxsplit= 1)
+	cleaned_string = split_string[0] + ':' + split_string[1].replace('<', '').replace('>', '')
+	return cleaned_string
