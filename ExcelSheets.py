@@ -1,12 +1,10 @@
 import datetime
 
 import openpyxl
-
 import rdflib
-from rdflib import RDF, RDFS, XSD, BNode, Literal, URIRef
+from rdflib import RDF, Literal
 
-from References import MyProtegeRoot, nsRoo, RooGraph
-
+from References import nsRoo, RooGraph
 from Utils import to_title, remove_gt_lt
 
 
@@ -14,6 +12,7 @@ class DataReqFile:
 	"""
 	Ancestor Class for IFC Data Requirements files
 	"""
+
 	def __init__(self, path, tab_obj, tab_prop):
 		self.Path = path
 		self.ImportDateTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -58,27 +57,17 @@ class SIG(DataReqFile):
 		"""
 		self.Graph.add((to_title('CBI'), RDF.type, Literal('Functional Category')))
 		self.Graph.add((to_title('Block system'), RDF.type, Literal('Functional Category')))
-		self.Graph.add((URIRef(':Train_control_system'), RDF.type, Literal('Functional Category')))
-		self.Graph.add((URIRef(':Traffic_dispatching_system'), RDF.type, Literal('Functional Category')))
+		self.Graph.add((to_title('Train control system'), RDF.type, Literal('Functional Category')))
+		self.Graph.add((to_title('Traffic dispatching system'), RDF.type, Literal('Functional Category')))
 
 	def get_objects(self, first_row, last_row):
 		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=9):
-			pass
-			#self.Graph.add((URIRef()))
-
-
-
+			self.Graph.add((to_title(row[1].value), nsRoo.hasID, Literal(row[0].value)))
 
 
 sig = SIG(R'C:\Users\amagn\Desktop\SIG Data\20190322-IFC-SD-005-DataRequirement.xlsx',
           '1-Object_Description ', '2.2-Property_Requirements_Spec', '2.1-Property_Requirement_Shared')
 sig.get_functional_categories()
+sig.get_objects(6, 116)
+print('\nTotal number of triples in {}: {}\n'.format(sig.Graph.n3(), len(sig.Graph)))
 sig.cast_to_rdf(R'C:\Users\amagn\OneDrive\Dev\DataRequirementsToRDF\SIG.ttl')
-
-
-
-
-
-
-
-
