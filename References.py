@@ -6,6 +6,8 @@ from rdflib.namespace import Namespace, NamespaceManager
 MyProtegeRoot = 'http://webprotege.stanford.edu/project/ErEJMiB9aKwG6oPN4WkYE#'
 nsRoo = Namespace(MyProtegeRoot)
 
+nsDC = Namespace
+
 
 class RooGraph(rdflib.Graph):
 	def __init__(self, identifier=None):

@@ -15,6 +15,7 @@ def to_title(s: str) -> str:
 
 	return s
 
+# Functions for turning RDF into SMW-import ready RDF
 
 def remove_gt_lt(s: str) -> str:
 	"""
@@ -27,3 +28,22 @@ def remove_gt_lt(s: str) -> str:
 	split_string = s.split(sep='<:', maxsplit=1)  # split at first subject; sep will be removed, by the way
 	cleaned_string = split_string[0] + ':' + split_string[1].replace('<', '').replace('>', '')
 	return cleaned_string
+
+def remove_roo(s: str) -> str:
+	"""
+	Removes the 'roo' in property designation 'roo:<something>' for import into SMW
+	:param s:
+	:return:
+	"""
+	return s.replace('roo:', ':')
+
+def local_Roo(s: str) -> str:
+	"""
+
+	:param s:
+	:return:
+	"""
+	return s.replace('<http://webprotege.stanford.edu/project/ErEJMiB9aKwG6oPN4WkYE#>', '<#>')
+
+def prepare_for_SMW_import(s: str) -> str:
+	return(local_Roo(remove_roo(remove_gt_lt(s))))
