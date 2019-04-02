@@ -1,4 +1,4 @@
-from rdflib import URIRef
+from rdflib import URIRef, Literal
 
 
 def to_title(s: str) -> str:
@@ -13,7 +13,14 @@ def to_title(s: str) -> str:
 	s = s.strip(" ").strip("(").strip(")")
 	s = URIRef(':' + s.replace(' ', '_'))  # substitutes whitespaces with underscores
 
+	# spot the 1st Chinese character
+	for i, char in enumerate(s):
+		if ord(char) > 0x7a:
+			s = Literal(s[0:int(i)].strip().strip('_'))  # does not work without calling Literal
+			break
+
 	return s
+
 
 # Functions for turning RDF into SMW-import ready RDF
 
@@ -29,6 +36,7 @@ def remove_gt_lt(s: str) -> str:
 	cleaned_string = split_string[0] + ':' + split_string[1].replace('<', '').replace('>', '')
 	return cleaned_string
 
+
 def remove_roo(s: str) -> str:
 	"""
 	Removes the 'roo' in property designation 'roo:<something>' for import into SMW
@@ -36,6 +44,7 @@ def remove_roo(s: str) -> str:
 	:return:
 	"""
 	return s.replace('roo:', ':')
+
 
 def local_Roo(s: str) -> str:
 	"""
@@ -45,5 +54,6 @@ def local_Roo(s: str) -> str:
 	"""
 	return s.replace('<http://webprotege.stanford.edu/project/ErEJMiB9aKwG6oPN4WkYE#>', '<#>')
 
+
 def prepare_for_SMW_import(s: str) -> str:
-	return(local_Roo(remove_roo(remove_gt_lt(s))))
+	return (local_Roo(remove_roo(remove_gt_lt(s))))

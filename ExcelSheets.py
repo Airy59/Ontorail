@@ -69,6 +69,7 @@ class SIG(DataReqFile):
 			self.Graph.add((to_title(row[1].value), nsRoo.hasVersion, Literal(self.Version)))
 
 
+
 sig = SIG(R'C:\Users\amagn\Desktop\SIG Data\20190322-IFC-SD-005-DataRequirement.xlsx',
           '1-Object_Description ', '2.2-Property_Requirements_Spec', '2.1-Property_Requirement_Shared', "0.1")
 sig.get_functional_categories()
