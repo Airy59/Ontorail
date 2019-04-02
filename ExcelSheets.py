@@ -38,7 +38,7 @@ class DataReqFile:
 		s = str(self.Graph.serialize(format=fmt), 'utf-8')
 		s = prepare_for_SMW_import(s)
 		print(s)
-		outfile = open(path, 'w+t', newline=None)
+		outfile = open(path, 'w+t', encoding = 'utf-8', newline=None)
 		outfile.write(s)
 		outfile.close()
 
