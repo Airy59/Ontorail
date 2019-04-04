@@ -2,14 +2,30 @@ from rdflib import URIRef, Literal
 
 OrdCnStart = 0x4e00
 
-def to_title(s: str) -> Literal:
+
+def to_title(s: str) -> URIRef:
 	"""
 	Turns the argument into a Mediawiki-suitable page title.
-	Truncates to first LF/CR or Chinese Character, whichever comes first, then
+	Truncates to first Chinese Character, then
 	Replaces whitespaces by underscores, then prefixes with a column,
-	converts to URIRef, and finally removes the < > surrounding it.
+	converts to URIRef.
 	:param s: name of the object
 	:return: new name for RDF import into wiki
+	"""
+
+	s = to_name_en(s)
+
+	# substitutes whitespaces with underscores, and prefixes with local (empty) namespace ":"
+	s = URIRef(':' + Literal(s.replace(' ', '_')))
+
+	return s
+
+
+def to_name_en(s: str) -> Literal:
+	"""
+
+	:param s:
+	:return:
 	"""
 
 	s = s.strip(" ").strip("(").strip(")").strip('"').strip("'").replace('\n', ' ').replace('\r', '')
@@ -20,28 +36,17 @@ def to_title(s: str) -> Literal:
 			s = s[0:i].strip().strip('_')  # does not work without calling Literal
 			break
 
-	# substitutes whitespaces with underscores, and prefixes with local (empty) namespace ":"
-	s = URIRef(':' + Literal(s.replace(' ', '_')))
+	return Literal(s)
 
-	return s
-
-def to_name_en(s: str) -> str:
-	"""
-
-	:param s:
-	:return:
-	"""
-	return Literal(to_title(s)[1:].replace('_',' '))
 
 def to_name_zh(s: str) -> Literal:
-
 	# start with the 1st Chinese character
 	for i, char in enumerate(s):
 		if ord(char) >= OrdCnStart:
 			s = s[i:]
-			s = s.replace('\n', ' ').replace('\r', '').replace('"','').strip()
+			s = s.replace('\n', ' ').replace('\r', '').replace('"', '').strip()
 			return Literal(s)
-	#if no Chinese character was found, return an empty string:
+	# if no Chinese character was found, return an empty string:
 	return ''
 
 
@@ -80,4 +85,3 @@ def local_Roo(s: str) -> str:
 
 def prepare_for_SMW_import(s: str) -> str:
 	return (local_Roo(remove_roo(remove_gt_lt(s))))
-

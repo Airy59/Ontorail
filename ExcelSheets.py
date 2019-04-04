@@ -1,7 +1,7 @@
 import datetime
 
 import openpyxl
-from rdflib import RDF, Literal
+from rdflib import RDF, Literal, URIRef
 
 from References import nsRoo, RooGraph
 from Utils import to_title, to_name_en, to_name_zh, prepare_for_SMW_import
@@ -62,22 +62,23 @@ class SIG(DataReqFile):
 		self.Graph.add((to_title('Train control system'), RDF.type, Literal('Functional Category')))
 		self.Graph.add((to_title('Traffic dispatching system'), RDF.type, Literal('Functional Category')))
 
-	def get_objects(self, first_row, last_row):
+	def get_objects(self, first_row, last_row, suffix = ''):
 		object_count = 0
 		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=9):
-			self.Graph.add((to_title(row[1].value), RDF.type, Literal("Object")))
-			self.Graph.add((to_title(row[1].value), nsRoo.Has_id, Literal(row[0].value)))
-			self.Graph.add((to_title(row[1].value), nsRoo.Has_version, Literal(self.Version)))
-			self.Graph.add((to_title(row[1].value), nsRoo.Has_name_en, Literal(to_name_en(row[1].value))))
-			self.Graph.add((to_title(row[1].value), nsRoo.Has_name_zh, Literal(to_name_zh(row[1].value))))
+			this_title = URIRef(to_title(row[1].value) + '_--_' + suffix)
+			self.Graph.add((this_title, RDF.type, Literal("Object")))
+			self.Graph.add((this_title, nsRoo.Has_id, Literal(row[0].value)))
+			self.Graph.add((this_title, nsRoo.Has_version, Literal(self.Version)))
+			self.Graph.add((this_title, nsRoo.Has_name_en, Literal(to_name_en(row[1].value))))
+			self.Graph.add((this_title, nsRoo.Has_name_zh, Literal(to_name_zh(row[1].value))))
 			object_count += 1
 		print('Total objects added: {}'.format(object_count))
 
 
 
-sig = SIG(R'C:\Users\amagn\Desktop\SIG Data\20190322-IFC-SD-005-DataRequirement.xlsx',
+sig = SIG(R'C:\Users\amagn\Desktop\SIG Data\Copy of 20190322-IFC-SD-005-DataRequirement.xlsx',
           '1-Object_Description ', '2.2-Property_Requirements_Spec', '2.1-Property_Requirement_Shared', "0.1")
 sig.get_functional_categories()
-sig.get_objects(6, 116)
+sig.get_objects(6, 116, suffix = 'sig')
 print('\nTotal number of triples in {}: {}\n'.format(sig.Graph.n3(), len(sig.Graph)))
 sig.cast_to_rdf(R'C:\Users\amagn\OneDrive\Dev\DataRequirementsToRDF\SIG.ttl')
