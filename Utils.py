@@ -1,5 +1,6 @@
 from rdflib import URIRef, Literal
 
+OrdCnStart = 0x4e00
 
 def to_title(s: str) -> Literal:
 	"""
@@ -10,16 +11,17 @@ def to_title(s: str) -> Literal:
 	:param s: name of the object
 	:return: new name for RDF import into wiki
 	"""
-	s = s.splitlines()[0]  # keeps first line only
-	s = s.strip(" ").strip("(").strip(")")
-	# substitutes whitespaces with underscores, and prefixes with local (empty) namespace ":"
-	s = URIRef(':' + s.replace(' ', '_'))
+
+	s = s.strip(" ").strip("(").strip(")").strip('"').strip("'").replace('\n', ' ').replace('\r', '')
 
 	# spot the 1st Chinese (or any other bizarre) character
 	for i, char in enumerate(s):
-		if ord(char) > 0x7a:
-			s = Literal(s[0:i].strip().strip('_'))  # does not work without calling Literal
+		if ord(char) > OrdCnStart:
+			s = s[0:i].strip().strip('_')  # does not work without calling Literal
 			break
+
+	# substitutes whitespaces with underscores, and prefixes with local (empty) namespace ":"
+	s = URIRef(':' + Literal(s.replace(' ', '_')))
 
 	return s
 
@@ -29,15 +31,17 @@ def to_name_en(s: str) -> str:
 	:param s:
 	:return:
 	"""
-	return to_title(s)
+	return Literal(to_title(s)[1:].replace('_',' '))
 
 def to_name_zh(s: str) -> Literal:
-	OrdCnStart = 0x4e00
+
 	# start with the 1st Chinese character
 	for i, char in enumerate(s):
 		if ord(char) >= OrdCnStart:
 			s = s[i:]
-			return ":" + s
+			s = s.replace('\n', ' ').replace('\r', '').replace('"','').strip()
+			return Literal(s)
+	#if no Chinese character was found, return an empty string:
 	return ''
 
 

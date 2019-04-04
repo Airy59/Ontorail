@@ -65,10 +65,10 @@ class SIG(DataReqFile):
 	def get_objects(self, first_row, last_row):
 		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=9):
 			self.Graph.add((to_title(row[1].value), RDF.type, Literal("Object")))
-			self.Graph.add((to_title(row[1].value), nsRoo.hasID, Literal(row[0].value)))
-			self.Graph.add((to_title(row[1].value), nsRoo.hasVersion, Literal(self.Version)))
-			self.Graph.add((to_title(row[1].value), nsRoo.has_name_en, Literal(to_name_en(row[1].value))))
-			self.Graph.add((to_title(row[1].value), nsRoo.has_name_zh, Literal(to_name_zh(row[1].value))))
+			self.Graph.add((to_title(row[1].value), nsRoo.Has_id, Literal(row[0].value)))
+			self.Graph.add((to_title(row[1].value), nsRoo.Has_version, Literal(self.Version)))
+			self.Graph.add((to_title(row[1].value), nsRoo.Has_name_en, Literal(to_name_en(row[1].value))))
+			self.Graph.add((to_title(row[1].value), nsRoo.Has_name_zh, Literal(to_name_zh(row[1].value))))
 
 
 
