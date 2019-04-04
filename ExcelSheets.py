@@ -63,12 +63,15 @@ class SIG(DataReqFile):
 		self.Graph.add((to_title('Traffic dispatching system'), RDF.type, Literal('Functional Category')))
 
 	def get_objects(self, first_row, last_row):
+		object_count = 0
 		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=9):
 			self.Graph.add((to_title(row[1].value), RDF.type, Literal("Object")))
 			self.Graph.add((to_title(row[1].value), nsRoo.Has_id, Literal(row[0].value)))
 			self.Graph.add((to_title(row[1].value), nsRoo.Has_version, Literal(self.Version)))
 			self.Graph.add((to_title(row[1].value), nsRoo.Has_name_en, Literal(to_name_en(row[1].value))))
 			self.Graph.add((to_title(row[1].value), nsRoo.Has_name_zh, Literal(to_name_zh(row[1].value))))
+			object_count += 1
+		print('Total objects added: {}'.format(object_count))
 
 
 
