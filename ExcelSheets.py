@@ -4,7 +4,7 @@ import openpyxl
 from rdflib import RDF, Literal
 
 from References import nsRoo, RooGraph
-from Utils import to_title, prepare_for_SMW_import
+from Utils import to_title, to_name_en, to_name_zh, prepare_for_SMW_import
 
 
 class DataReqFile:
@@ -67,6 +67,8 @@ class SIG(DataReqFile):
 			self.Graph.add((to_title(row[1].value), RDF.type, Literal("Object")))
 			self.Graph.add((to_title(row[1].value), nsRoo.hasID, Literal(row[0].value)))
 			self.Graph.add((to_title(row[1].value), nsRoo.hasVersion, Literal(self.Version)))
+			self.Graph.add((to_title(row[1].value), nsRoo.has_name_en, Literal(to_name_en(row[1].value))))
+			self.Graph.add((to_title(row[1].value), nsRoo.has_name_zh, Literal(to_name_zh(row[1].value))))
 
 
 

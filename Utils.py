@@ -1,8 +1,9 @@
 from rdflib import URIRef, Literal
 
 
-def to_title(s: str) -> str:
+def to_title(s: str) -> Literal:
 	"""
+	Turns the argument into a Mediawiki-suitable page title.
 	Truncates to first LF/CR or Chinese Character, whichever comes first, then
 	Replaces whitespaces by underscores, then prefixes with a column,
 	converts to URIRef, and finally removes the < > surrounding it.
@@ -11,15 +12,33 @@ def to_title(s: str) -> str:
 	"""
 	s = s.splitlines()[0]  # keeps first line only
 	s = s.strip(" ").strip("(").strip(")")
-	s = URIRef(':' + s.replace(' ', '_'))  # substitutes whitespaces with underscores
+	# substitutes whitespaces with underscores, and prefixes with local (empty) namespace ":"
+	s = URIRef(':' + s.replace(' ', '_'))
 
-	# spot the 1st Chinese character
+	# spot the 1st Chinese (or any other bizarre) character
 	for i, char in enumerate(s):
 		if ord(char) > 0x7a:
-			s = Literal(s[0:int(i)].strip().strip('_'))  # does not work without calling Literal
+			s = Literal(s[0:i].strip().strip('_'))  # does not work without calling Literal
 			break
 
 	return s
+
+def to_name_en(s: str) -> str:
+	"""
+
+	:param s:
+	:return:
+	"""
+	return to_title(s)
+
+def to_name_zh(s: str) -> Literal:
+	OrdCnStart = 0x4e00
+	# start with the 1st Chinese character
+	for i, char in enumerate(s):
+		if ord(char) >= OrdCnStart:
+			s = s[i:]
+			return ":" + s
+	return ''
 
 
 # Functions for turning RDF into SMW-import ready RDF
@@ -57,3 +76,4 @@ def local_Roo(s: str) -> str:
 
 def prepare_for_SMW_import(s: str) -> str:
 	return (local_Roo(remove_roo(remove_gt_lt(s))))
+
