@@ -21,30 +21,46 @@ def to_title(s: str) -> URIRef:
 	return s
 
 
+def to_name(s: str) -> Literal:
+	"""
+	Does some basic transforms in order to make strings found in Excel sheets usable for naming.
+	In particular, it replaces brackets: (...) by: --..., as these wreak havoc in RDFIO imports
+	:param s:
+	:return:
+	"""
+	s = s.strip(" ").strip("(").strip(")").strip('"').strip("'").replace('\n', ' ').replace('\r', '')
+	return Literal(s.replace('(', '--').replace(')', ''))
+
+
 def to_name_en(s: str) -> Literal:
 	"""
-
+	Calls to_name transform, and then gets rid of Chinese characters
 	:param s:
 	:return:
 	"""
 
-	s = s.strip(" ").strip("(").strip(")").strip('"').strip("'").replace('\n', ' ').replace('\r', '')
+	s = to_name(s)
 
 	# spot the 1st Chinese (or any other bizarre) character
 	for i, char in enumerate(s):
 		if ord(char) > OrdCnStart:
-			s = s[0:i].strip().strip('_')  # does not work without calling Literal
+			s = s[0:i].strip().strip('_')
 			break
 
 	return Literal(s)
 
 
 def to_name_zh(s: str) -> Literal:
+	"""
+	Calls to_name, then retains the substring starting with first encountered Chinese character
+	:param s:
+	:return:
+	"""
+	s = to_name(s)
 	# start with the 1st Chinese character
 	for i, char in enumerate(s):
 		if ord(char) >= OrdCnStart:
-			s = s[i:]
-			s = s.replace('\n', ' ').replace('\r', '').replace('"', '').strip()
+			s = s[i:].strip()
 			return Literal(s)
 	# if no Chinese character was found, return an empty string:
 	return ''
