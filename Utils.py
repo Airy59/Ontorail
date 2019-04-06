@@ -1,5 +1,10 @@
+"""
+String-handling utilities for Excel (or other sources) to RDF transformations.
+"""
+
 from rdflib import URIRef, Literal
 
+# In utf-8, position of first character in CJK character subset
 OrdCnStart = 0x4e00
 
 

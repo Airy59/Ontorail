@@ -1,3 +1,7 @@
+"""
+Excel-to-RDF transformation classes.
+"""
+
 import datetime
 
 import openpyxl
@@ -28,7 +32,6 @@ class DataReqFile:
 		self.Graph.add((to_title('Signalling Package'), RDF.type, Literal("Domain_Package")))
 		self.Graph.add((to_title('Signalling Package'), nsRoo.hasVersion, Literal(version)))
 
-
 	def get_objects(self):
 		pass
 
@@ -37,8 +40,7 @@ class DataReqFile:
 		self.Rdf = open(path, 'w+t', newline=None)
 		s = str(self.Graph.serialize(format=fmt), 'utf-8')
 		s = prepare_for_SMW_import(s)
-		print(s)
-		outfile = open(path, 'w+t', encoding = 'utf-8', newline=None)
+		outfile = open(path, 'w+t', encoding='utf-8', newline=None)
 		outfile.write(s)
 		outfile.close()
 
@@ -52,18 +54,29 @@ class SIG(DataReqFile):
 		super().__init__(path, tab_obj, tab_prop_spec, version)
 		self.TabPropShared = tab_prop_shared
 		self.SheetPropShared = self.Book[tab_prop_shared]
+		self.Functional_Categories_Columns = {6: 'CBI', 7: 'Block system', 8: 'Train control system',
+		                                      9: 'Traffic dispatching system'}
 
-	def get_functional_categories(self):
+	def set_functional_categories(self):
 		"""
 		In SIG, objects may belong to several functional categories!
+		The categories themselves are not read from the sheets;
+		however, the assignment of objects to categories is documented in the sheets and imported here
 		"""
-		self.Graph.add((to_title('CBI'), RDF.type, Literal('Functional Category')))
-		self.Graph.add((to_title('Block system'), RDF.type, Literal('Functional Category')))
-		self.Graph.add((to_title('Train control system'), RDF.type, Literal('Functional Category')))
-		self.Graph.add((to_title('Traffic dispatching system'), RDF.type, Literal('Functional Category')))
+		for v in self.Functional_Categories_Columns.values():
+			self.Graph.add((to_title(v), RDF.type, Literal('Functional Category')))
 
-	def get_objects(self, first_row, last_row, suffix = ''):
+	def get_objects(self, first_row, last_row, suffix=''):
+		"""
+		Scrutinize row after row in selected range.
+		:param first_row: first object row
+		:param last_row: last object row
+		:param suffix: allows to ad suffix to object names, for collision avoidance
+		:return:
+		"""
+		self.set_functional_categories()
 		object_count = 0
+		# One object at a time...
 		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=9):
 			this_title = URIRef(to_title(row[1].value) + '_--_' + suffix)
 			self.Graph.add((this_title, RDF.type, Literal("Object")))
@@ -71,14 +84,16 @@ class SIG(DataReqFile):
 			self.Graph.add((this_title, nsRoo.HasVersion, Literal(self.Version)))
 			self.Graph.add((this_title, nsRoo.HasNameEn, Literal(to_name_en(row[1].value))))
 			self.Graph.add((this_title, nsRoo.HasNameZh, Literal(to_name_zh(row[1].value))))
-			object_count += 1
-		print('Total objects added: {}'.format(object_count))
+			# for col in
 
+			object_count += 1
+
+		return (object_count, len(self.Graph))
 
 
 sig = SIG(R'C:\Users\amagn\Desktop\SIG Data\Copy of 20190322-IFC-SD-005-DataRequirement.xlsx',
           '1-Object_Description ', '2.2-Property_Requirements_Spec', '2.1-Property_Requirement_Shared', "0.1")
-sig.get_functional_categories()
-sig.get_objects(6, 116, suffix = 'sig')
-print('\nTotal number of triples in {}: {}\n'.format(sig.Graph.n3(), len(sig.Graph)))
+result = sig.get_objects(6, 116, suffix='sig')
+print('\nTotal number of objects in {}: {}'.format(sig.Graph.n3(), result[0]))
+print('Total number of triples: {}\n'.format(result[1]))
 sig.cast_to_rdf(R'C:\Users\amagn\OneDrive\Dev\DataRequirementsToRDF\SIG.ttl')
