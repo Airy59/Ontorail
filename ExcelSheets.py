@@ -56,6 +56,15 @@ class SIG(DataReqFile):
 		self.SheetPropShared = self.Book[tab_prop_shared]
 		self.Functional_Categories_Columns = {6: 'CBI', 7: 'Block system', 8: 'Train control system',
 		                                      9: 'Traffic dispatching system'}
+		# note that curly braces must be doubled to be escaped, herebelow:
+		self.Functional_Categories_FreeText = R"""Objects belonging to this category:
+
+{{{{#ask:
+  [[Category:Object]]
+  [[InFunctionalCategory::{}]]
+  |?HasNameZh
+}}}}
+)"""
 
 	def set_functional_categories(self):
 		"""
@@ -64,7 +73,11 @@ class SIG(DataReqFile):
 		however, the assignment of objects to categories is documented in the sheets and imported here
 		"""
 		for v in self.Functional_Categories_Columns.values():
+			this_title = to_title(v)
 			self.Graph.add((to_title(v), RDF.type, Literal('Functional Category')))
+			self.Graph.add((to_title(v), nsRoo.HasNameEn, Literal(to_name_en(v))))
+
+			self.Graph.add((to_title(v), nsRoo.HasContents, Literal(self.Functional_Categories_FreeText.format(v))))
 
 	def get_objects(self, first_row, last_row, suffix=''):
 		"""
@@ -84,7 +97,10 @@ class SIG(DataReqFile):
 			self.Graph.add((this_title, nsRoo.HasVersion, Literal(self.Version)))
 			self.Graph.add((this_title, nsRoo.HasNameEn, Literal(to_name_en(row[1].value))))
 			self.Graph.add((this_title, nsRoo.HasNameZh, Literal(to_name_zh(row[1].value))))
-			# for col in
+			for col, fc in self.Functional_Categories_Columns.items():
+				# caution: tuple is 0-based, while columns are 1-based...
+				if 'x' in str(row[col-1].value).lower():
+					self.Graph.add((this_title, nsRoo.InFunctionalCategory, Literal(':'+fc)))
 
 			object_count += 1
 
