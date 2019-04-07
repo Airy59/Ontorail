@@ -27,10 +27,14 @@ class DataReqFile:
 		self.Version = version
 		self.Rdf = None
 		self.RdfFormat = None
+		self.DomainPackages = {'Sig': 'Signalling Package', 'Tra': 'Track Package', 'Tel': 'Telecom Package', 'Ene': 'Energy Package'}
 		# Triples
-		self.Graph = RooGraph(identifier='SIG_graph_')
-		self.Graph.add((to_title('Signalling Package'), RDF.type, Literal("Domain_Package")))
-		self.Graph.add((to_title('Signalling Package'), nsRoo.hasVersion, Literal(version)))
+		self.Graph = RooGraph(identifier='IFC_Data_Req_')
+		for dp in self.DomainPackages.values():
+			self.Graph.add((to_title(dp), RDF.type, Literal("Domain_Package")))
+			self.Graph.add((to_title(dp), nsRoo.HasVersion, Literal(version)))
+			self.Graph.add((to_title(dp), nsRoo.HasNameEn, Literal(dp)))
+			self.Graph.add((to_title(dp), nsRoo.HasWikitext, Literal(R"Functional categories in this Domain Package: {{{{#ask: [[Category:Functional Category]] [[InDomainPackage::{}]] }}}}".format(dp)) ))
 
 	def get_objects(self):
 		pass
@@ -57,14 +61,8 @@ class SIG(DataReqFile):
 		self.Functional_Categories_Columns = {6: 'CBI', 7: 'Block system', 8: 'Train control system',
 		                                      9: 'Traffic dispatching system'}
 		# note that curly braces must be doubled to be escaped, herebelow:
-		self.Functional_Categories_FreeText = R"""Objects belonging to this category:
+		self.Functional_Categories_FreeText = R"Objects belonging to this category: {{{{#ask: [[Category:Object]] [[InFunctionalCategory::{}]] | ?HasNameZh }}}}"
 
-{{{{#ask:
-  [[Category:Object]]
-  [[InFunctionalCategory::{}]]
-  |?HasNameZh
-}}}}
-)"""
 
 	def set_functional_categories(self):
 		"""
@@ -74,10 +72,10 @@ class SIG(DataReqFile):
 		"""
 		for v in self.Functional_Categories_Columns.values():
 			this_title = to_title(v)
-			self.Graph.add((to_title(v), RDF.type, Literal('Functional Category')))
-			self.Graph.add((to_title(v), nsRoo.HasNameEn, Literal(to_name_en(v))))
-
-			self.Graph.add((to_title(v), nsRoo.HasContents, Literal(self.Functional_Categories_FreeText.format(v))))
+			self.Graph.add((this_title, RDF.type, Literal('Functional Category')))
+			self.Graph.add((this_title, nsRoo.HasNameEn, Literal(to_name_en(v))))
+			self.Graph.add((this_title, nsRoo.InDomainPackage, Literal('Signalling Package')))
+			self.Graph.add((this_title, nsRoo.HasWikitext, Literal(self.Functional_Categories_FreeText.format(v))))
 
 	def get_objects(self, first_row, last_row, suffix=''):
 		"""
@@ -87,7 +85,7 @@ class SIG(DataReqFile):
 		:param suffix: allows to ad suffix to object names, for collision avoidance
 		:return:
 		"""
-		self.set_functional_categories()
+
 		object_count = 0
 		# One object at a time...
 		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=9):
@@ -99,8 +97,8 @@ class SIG(DataReqFile):
 			self.Graph.add((this_title, nsRoo.HasNameZh, Literal(to_name_zh(row[1].value))))
 			for col, fc in self.Functional_Categories_Columns.items():
 				# caution: tuple is 0-based, while columns are 1-based...
-				if 'x' in str(row[col-1].value).lower():
-					self.Graph.add((this_title, nsRoo.InFunctionalCategory, Literal(':'+fc)))
+				if 'x' in str(row[col - 1].value).lower():
+					self.Graph.add((this_title, nsRoo.InFunctionalCategory, Literal(fc)))
 
 			object_count += 1
 
@@ -109,7 +107,8 @@ class SIG(DataReqFile):
 
 sig = SIG(R'C:\Users\amagn\Desktop\SIG Data\Copy of 20190322-IFC-SD-005-DataRequirement.xlsx',
           '1-Object_Description ', '2.2-Property_Requirements_Spec', '2.1-Property_Requirement_Shared', "0.1")
-result = sig.get_objects(6, 116, suffix='sig')
-print('\nTotal number of objects in {}: {}'.format(sig.Graph.n3(), result[0]))
-print('Total number of triples: {}\n'.format(result[1]))
+result = sig.set_functional_categories()
+#result = sig.get_objects(6, 116, suffix='sig')
+#print('\nTotal number of objects in {}: {}'.format(sig.Graph.n3(), result[0]))
+#print('Total number of triples: {}\n'.format(result[1]))
 sig.cast_to_rdf(R'C:\Users\amagn\OneDrive\Dev\DataRequirementsToRDF\SIG.ttl')
