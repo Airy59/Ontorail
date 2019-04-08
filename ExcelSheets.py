@@ -5,7 +5,7 @@ Excel-to-RDF transformation classes.
 import datetime
 
 import openpyxl
-from rdflib import RDF, Literal, URIRef
+from rdflib import RDF, Literal, URIRef, RDFS
 
 from References import nsRoo, RooGraph
 from Utils import to_title, to_name_en, to_name_zh, prepare_for_SMW_import
@@ -27,14 +27,17 @@ class DataReqFile:
 		self.Version = version
 		self.Rdf = None
 		self.RdfFormat = None
-		self.DomainPackages = {'Sig': 'Signalling Package', 'Tra': 'Track Package', 'Tel': 'Telecom Package', 'Ene': 'Energy Package'}
+		self.DomainPackages = {'Sig': 'Signalling Package', 'Tra': 'Track Package', 'Tel': 'Telecom Package',
+		                       'Ene': 'Energy Package'}
 		# Triples
 		self.Graph = RooGraph(identifier='IFC_Data_Req_')
 		for dp in self.DomainPackages.values():
 			self.Graph.add((to_title(dp), RDF.type, Literal("Domain_Package")))
 			self.Graph.add((to_title(dp), nsRoo.HasVersion, Literal(version)))
 			self.Graph.add((to_title(dp), nsRoo.HasNameEn, Literal(dp)))
-			self.Graph.add((to_title(dp), nsRoo.HasWikitext, Literal(R"Functional categories in this Domain Package: {{{{#ask: [[Category:Functional Category]] [[InDomainPackage::{}]] }}}}".format(dp)) ))
+			self.Graph.add((to_title(dp), nsRoo.HasWikitext, Literal(
+				R"Functional categories in this Domain Package: {{{{#ask: [[Category:Functional Category]] [[InDomainPackage::{}]] }}}}".format(
+					dp))))
 
 	def get_objects(self):
 		pass
@@ -62,7 +65,6 @@ class SIG(DataReqFile):
 		                                      9: 'Traffic dispatching system'}
 		# note that curly braces must be doubled to be escaped, herebelow:
 		self.Functional_Categories_FreeText = R"Objects belonging to this category: {{{{#ask: [[Category:Object]] [[InFunctionalCategory::{}]] | ?HasNameZh }}}}"
-
 
 	def set_functional_categories(self):
 		"""
@@ -104,11 +106,35 @@ class SIG(DataReqFile):
 
 		return (object_count, len(self.Graph))
 
+	def get_properties(self, first_row, last_row, suffix=''):
+		cols = {'object_id': 1, 'name_en': 4, 'description_en': 5, 'name_zh': 41, 'description_zh': 42}
+		this_object = ''
+		for row in self.SheetProp.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=42):
+			first_cell_value = row[cols['object_id']-1].value
+			if first_cell_value not in ('', None):
+				this_object_id = first_cell_value
+			if this_object_id not in ('', None):
+				this_object = list(self.Graph.subjects(predicate=nsRoo.HasId, object = Literal(this_object_id)))
+				if this_object != []:
+					this_object = this_object[0]
+					this_property = row[cols['name_en']-1].value
+					if this_property not in ('', None):
+						this_title = to_title(this_property)
+						self.Graph.add((this_title, RDF.type, Literal("Property")))
+						self.Graph.add((this_title, nsRoo.CharacterizesObject, Literal(this_object)))
+						self.Graph.add((this_title, nsRoo.HasNameEn, Literal(row[cols['name_en']-1].value)))
+						self.Graph.add((this_title, nsRoo.HasVersion, Literal(self.Version)))
+						self.Graph.add((this_title, nsRoo.HasDefinitionEn, Literal(row[cols['description_en']-1].value)))
+						self.Graph.add((this_title, nsRoo.HasNameZh, Literal(row[cols['name_zh']-1].value)))
+						self.Graph.add((this_title, nsRoo.HasDefinitionZh, Literal(row[cols['description_zh']-1].value)))
+
+
 
 sig = SIG(R'C:\Users\amagn\Desktop\SIG Data\Copy of 20190322-IFC-SD-005-DataRequirement.xlsx',
           '1-Object_Description ', '2.2-Property_Requirements_Spec', '2.1-Property_Requirement_Shared', "0.1")
 result = sig.set_functional_categories()
-#result = sig.get_objects(6, 116, suffix='sig')
-#print('\nTotal number of objects in {}: {}'.format(sig.Graph.n3(), result[0]))
-#print('Total number of triples: {}\n'.format(result[1]))
+result = sig.get_objects(6, 116, suffix='sig')
+# print('\nTotal number of objects in {}: {}'.format(sig.Graph.n3(), result[0]))
+# print('Total number of triples: {}\n'.format(result[1]))
+sig.get_properties(12, 153)
 sig.cast_to_rdf(R'C:\Users\amagn\OneDrive\Dev\DataRequirementsToRDF\SIG.ttl')
