@@ -5,7 +5,7 @@ Excel-to-RDF transformation classes.
 import datetime
 
 import openpyxl
-from rdflib import RDF, Literal, URIRef, RDFS
+from rdflib import RDF, Literal, URIRef
 
 from References import nsRoo, RooGraph
 from Utils import to_title, to_name_en, to_name_zh, prepare_for_SMW_import
@@ -17,6 +17,8 @@ class DataReqFile:
 	"""
 
 	def __init__(self, path, tab_obj, tab_prop, version):
+		self.DictName = 'IFC_2019'
+		self.NameSpace = 'IFC:'
 		self.Path = path
 		self.ImportDateTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 		self.TabObj = tab_obj
@@ -33,11 +35,12 @@ class DataReqFile:
 		self.Graph = RooGraph(identifier='IFC_Data_Req_')
 		for dp in self.DomainPackages.values():
 			self.Graph.add((to_title(dp), RDF.type, Literal("Domain_Package")))
+			self.Graph.add((to_title(dp), nsRoo.BelongsToDictionary, Literal(self.DictName)))
 			self.Graph.add((to_title(dp), nsRoo.HasVersion, Literal(version)))
 			self.Graph.add((to_title(dp), nsRoo.HasNameEn, Literal(dp)))
-			self.Graph.add((to_title(dp), nsRoo.HasWikitext, Literal(
-				R"Functional categories in this Domain Package: {{{{#ask: [[Category:Functional Category]] [[InDomainPackage::{}]] }}}}".format(
-					dp))))
+			self.Graph.add((to_title(dp), nsRoo.Wikitext, Literal(
+					R"Functional categories in this Domain Package: {{{{#ask: [[Category:Functional Category]] [[BelongsToDictionary::{}]] [[InDomainPackage::{}]] }}}}".format(
+							Literal(self.DictName),dp))))
 
 	def get_objects(self):
 		pass
@@ -64,7 +67,7 @@ class SIG(DataReqFile):
 		self.Functional_Categories_Columns = {6: 'CBI', 7: 'Block system', 8: 'Train control system',
 		                                      9: 'Traffic dispatching system'}
 		# note that curly braces must be doubled to be escaped, herebelow:
-		self.Functional_Categories_FreeText = R"Objects belonging to this category: {{{{#ask: [[Category:Object]] [[InFunctionalCategory::{}]] | ?HasNameZh }}}}"
+		self.Functional_Categories_FreeText = R"Objects belonging to this category: {{{{#ask: [[Category:Object]] [[BelongsToDictionary::{}]] [[InFunctionalCategory::{}]] | ?HasNameZh }}}}"
 
 	def set_functional_categories(self):
 		"""
@@ -73,11 +76,12 @@ class SIG(DataReqFile):
 		however, the assignment of objects to categories is documented in the sheets and imported here
 		"""
 		for v in self.Functional_Categories_Columns.values():
-			this_title = to_title(v)
+			this_title = to_title(self.NameSpace + v)
+			self.Graph.add((this_title, nsRoo.BelongsToDictionary, Literal('IFC 2019')))
 			self.Graph.add((this_title, RDF.type, Literal('Functional Category')))
 			self.Graph.add((this_title, nsRoo.HasNameEn, Literal(to_name_en(v))))
 			self.Graph.add((this_title, nsRoo.InDomainPackage, Literal('Signalling Package')))
-			self.Graph.add((this_title, nsRoo.HasWikitext, Literal(self.Functional_Categories_FreeText.format(v))))
+			self.Graph.add((this_title, nsRoo.Wikitext, Literal(self.Functional_Categories_FreeText.format(self.DictName, v))))
 
 	def get_objects(self, first_row, last_row, suffix=''):
 		"""
@@ -91,8 +95,9 @@ class SIG(DataReqFile):
 		object_count = 0
 		# One object at a time...
 		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=9):
-			this_title = URIRef(to_title(row[1].value) + '_--_' + suffix)
+			this_title = URIRef(to_title(self.NameSpace + row[1].value) + '_--_' + suffix)
 			self.Graph.add((this_title, RDF.type, Literal("Object")))
+			self.Graph.add((this_title, nsRoo.BelongsToDictionary, Literal('IFC_2019')))
 			self.Graph.add((this_title, nsRoo.HasId, Literal(row[0].value)))
 			self.Graph.add((this_title, nsRoo.HasVersion, Literal(self.Version)))
 			self.Graph.add((this_title, nsRoo.HasNameEn, Literal(to_name_en(row[1].value))))
@@ -110,24 +115,26 @@ class SIG(DataReqFile):
 		cols = {'object_id': 1, 'name_en': 4, 'description_en': 5, 'name_zh': 41, 'description_zh': 42}
 		this_object = ''
 		for row in self.SheetProp.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=42):
-			first_cell_value = row[cols['object_id']-1].value
+			first_cell_value = row[cols['object_id'] - 1].value
 			if first_cell_value not in ('', None):
 				this_object_id = first_cell_value
 			if this_object_id not in ('', None):
-				this_object = list(self.Graph.subjects(predicate=nsRoo.HasId, object = Literal(this_object_id)))
+				this_object = list(self.Graph.subjects(predicate=nsRoo.HasId, object=Literal(this_object_id)))
 				if this_object != []:
 					this_object = this_object[0]
-					this_property = row[cols['name_en']-1].value
+					this_property = row[cols['name_en'] - 1].value
 					if this_property not in ('', None):
-						this_title = to_title(this_property)
+						this_title = to_title(self.NameSpace + this_property)
 						self.Graph.add((this_title, RDF.type, Literal("Property")))
-						self.Graph.add((this_title, nsRoo.CharacterizesObject, Literal(this_object)))
-						self.Graph.add((this_title, nsRoo.HasNameEn, Literal(row[cols['name_en']-1].value)))
+						self.Graph.add((this_title, nsRoo.BelongsToDictionary, Literal('IFC_2019')))
+						self.Graph.add((this_title, nsRoo.CharacterizesObject, this_object))  # w/o "Literal", otherwise excess column
+						self.Graph.add((this_title, nsRoo.HasNameEn, Literal(row[cols['name_en'] - 1].value)))
 						self.Graph.add((this_title, nsRoo.HasVersion, Literal(self.Version)))
-						self.Graph.add((this_title, nsRoo.HasDefinitionEn, Literal(row[cols['description_en']-1].value)))
-						self.Graph.add((this_title, nsRoo.HasNameZh, Literal(row[cols['name_zh']-1].value)))
-						self.Graph.add((this_title, nsRoo.HasDefinitionZh, Literal(row[cols['description_zh']-1].value)))
-
+						self.Graph.add(
+								(this_title, nsRoo.HasDefinitionEn, Literal(row[cols['description_en'] - 1].value)))
+						self.Graph.add((this_title, nsRoo.HasNameZh, Literal(row[cols['name_zh'] - 1].value)))
+						self.Graph.add(
+								(this_title, nsRoo.HasDefinitionZh, Literal(row[cols['description_zh'] - 1].value)))
 
 
 sig = SIG(R'C:\Users\amagn\Desktop\SIG Data\Copy of 20190322-IFC-SD-005-DataRequirement.xlsx',
