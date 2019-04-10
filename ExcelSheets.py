@@ -76,7 +76,7 @@ class SIG(DataReqFile):
 		however, the assignment of objects to categories is documented in the sheets and imported here
 		"""
 		for v in self.Functional_Categories_Columns.values():
-			this_title = to_title(self.NameSpace + v)
+			this_title = to_title(v)
 			self.Graph.add((this_title, nsRoo.BelongsToDictionary, Literal('IFC 2019')))
 			self.Graph.add((this_title, RDF.type, Literal('Functional Category')))
 			self.Graph.add((this_title, nsRoo.HasNameEn, Literal(to_name_en(v))))
@@ -95,7 +95,7 @@ class SIG(DataReqFile):
 		object_count = 0
 		# One object at a time...
 		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=9):
-			this_title = URIRef(to_title(self.NameSpace + row[1].value) + '_--_' + suffix)
+			this_title = URIRef(to_title(row[1].value) + '_--_' + suffix)
 			self.Graph.add((this_title, RDF.type, Literal("Object")))
 			self.Graph.add((this_title, nsRoo.BelongsToDictionary, Literal('IFC_2019')))
 			self.Graph.add((this_title, nsRoo.HasId, Literal(row[0].value)))
@@ -124,7 +124,7 @@ class SIG(DataReqFile):
 					this_object = this_object[0]
 					this_property = row[cols['name_en'] - 1].value
 					if this_property not in ('', None):
-						this_title = to_title(self.NameSpace + this_property)
+						this_title = to_title(this_property)
 						self.Graph.add((this_title, RDF.type, Literal("Property")))
 						self.Graph.add((this_title, nsRoo.BelongsToDictionary, Literal('IFC_2019')))
 						self.Graph.add((this_title, nsRoo.CharacterizesObject, this_object))  # w/o "Literal", otherwise excess column
