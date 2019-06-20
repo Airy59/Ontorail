@@ -13,7 +13,7 @@ from Utils import to_title, to_name_en, to_name_zh, prepare_for_SMW_import
 
 class DataReqFile:
 	"""
-	Ancestor Class for IFC Data Requirements files
+	Ancestor Class for IFC Data Requirements files description and processing
 	"""
 
 	def __init__(self, path, tab_obj, tab_prop, version):
@@ -54,6 +54,10 @@ class DataReqFile:
 		outfile.write(s)
 		outfile.close()
 
+	def find_multiple_definitions(self):
+		"""Find objects or properties with multiple definitions (in one language)"""
+		pass
+
 
 class SIG(DataReqFile):
 	"""
@@ -64,8 +68,8 @@ class SIG(DataReqFile):
 		super().__init__(path, tab_obj, tab_prop_spec, version)
 		self.TabPropShared = tab_prop_shared
 		self.SheetPropShared = self.Book[tab_prop_shared]
-		self.Functional_Categories_Columns = {6: 'CBI', 7: 'Block system', 8: 'Train control system',
-		                                      9: 'Traffic dispatching system'}
+		self.Functional_Categories_Columns = {7: 'CBI', 8: 'Block system', 9: 'Train control system',
+		                                      10: 'Traffic dispatching system'}
 		# note that curly braces must be doubled to be escaped, herebelow:
 		self.Functional_Categories_FreeText = R"Objects belonging to this category: {{{{#ask: [[Category:Object]] [[BelongsToDictionary::{}]] [[InFunctionalCategory::{}]] | ?HasNameZh }}}}"
 
@@ -88,20 +92,22 @@ class SIG(DataReqFile):
 		Scrutinize row after row in selected range.
 		:param first_row: first object row
 		:param last_row: last object row
-		:param suffix: allows to ad suffix to object names, for collision avoidance
+		:param suffix: allows to add suffix to object names, for collision avoidance
 		:return:
 		"""
 
+		cols = {'obj_id': 1, 'obj_name': 2}  # columns A = 1, etc.
+
 		object_count = 0
 		# One object at a time...
-		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=9):
+		for row in self.SheetObj.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=10):
 			this_title = URIRef(to_title(row[1].value) + '_--_' + suffix)
 			self.Graph.add((this_title, RDF.type, Literal("Object")))
 			self.Graph.add((this_title, nsRoo.BelongsToDictionary, Literal('IFC_2019')))
-			self.Graph.add((this_title, nsRoo.HasId, Literal(row[0].value)))
+			self.Graph.add((this_title, nsRoo.HasId, Literal(row[cols['obj_id']-1].value)))
 			self.Graph.add((this_title, nsRoo.HasVersion, Literal(self.Version)))
-			self.Graph.add((this_title, nsRoo.HasNameEn, Literal(to_name_en(row[1].value))))
-			self.Graph.add((this_title, nsRoo.HasNameZh, Literal(to_name_zh(row[1].value))))
+			self.Graph.add((this_title, nsRoo.HasNameEn, Literal(to_name_en(row[cols['obj_name']-1].value))))
+			self.Graph.add((this_title, nsRoo.HasNameZh, Literal(to_name_zh(row[cols['obj_name']-1].value))))
 			for col, fc in self.Functional_Categories_Columns.items():
 				# caution: tuple is 0-based, while columns are 1-based...
 				if 'x' in str(row[col - 1].value).lower():
@@ -112,22 +118,24 @@ class SIG(DataReqFile):
 		return (object_count, len(self.Graph))
 
 	def get_properties(self, first_row, last_row, suffix=''):
-		cols = {'object_id': 1, 'name_en': 4, 'description_en': 5, 'name_zh': 41, 'description_zh': 42}
-		this_object = ''
+		"""Get specific properties"""
+		cols = {'prop_id': 1, 'object_id': 2, 'prop_group': 3, 'name_en': 4, 'description_en': 5, 'name_zh': 39, 'description_zh': 40}
+		property_count = 0
 		for row in self.SheetProp.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=42):
-			first_cell_value = row[cols['object_id'] - 1].value
-			if first_cell_value not in ('', None):
-				this_object_id = first_cell_value
-			if this_object_id not in ('', None):
-				this_object = list(self.Graph.subjects(predicate=nsRoo.HasId, object=Literal(this_object_id)))
+			object_name = row[cols['object_id'] - 1].value
+			if object_name not in ('', None):
+				this_object = list(self.Graph.subjects(predicate=nsRoo.HasNameEn, object=Literal(object_name)))
 				if this_object != []:
 					this_object = this_object[0]
 					this_property = row[cols['name_en'] - 1].value
 					if this_property not in ('', None):
 						this_title = to_title(this_property)
+						property_count += 1
 						self.Graph.add((this_title, RDF.type, Literal("Property")))
+						self.Graph.add((this_title, nsRoo.HasId, Literal(row[cols['prop_id']-1].value)))
 						self.Graph.add((this_title, nsRoo.BelongsToDictionary, Literal('IFC_2019')))
 						self.Graph.add((this_title, nsRoo.CharacterizesObject, this_object))  # w/o "Literal", otherwise excess column
+						self.Graph.add((this_title, nsRoo.BelongsToGroup, Literal(row[cols['prop_group']-1].value)))
 						self.Graph.add((this_title, nsRoo.HasNameEn, Literal(row[cols['name_en'] - 1].value)))
 						self.Graph.add((this_title, nsRoo.HasVersion, Literal(self.Version)))
 						self.Graph.add(
@@ -135,13 +143,23 @@ class SIG(DataReqFile):
 						self.Graph.add((this_title, nsRoo.HasNameZh, Literal(row[cols['name_zh'] - 1].value)))
 						self.Graph.add(
 								(this_title, nsRoo.HasDefinitionZh, Literal(row[cols['description_zh'] - 1].value)))
+		print('Specific property count (incl. duplicates) : ', property_count)
+
+	def get_shared_properties(self, first_row, last_row):
+		"""Get shared properties"""
+		cols = {'object_id': 1, 'name_en': 4, 'description_en': 5, 'name_zh': 41, 'description_zh': 42}
+		property_count = 0
+		for row in self.SheetProp.iter_rows(min_row=first_row, max_row=last_row, min_col=1, max_col=42):
+			pass
 
 
-sig = SIG(R'C:\Users\amagn\Desktop\SIG Data\Copy of 20190322-IFC-SD-005-DataRequirement.xlsx',
+
+
+sig = SIG(R'C:\Users\amagn\Desktop\SIG Data\Copy of 20190606-IFC-SD-005-DataRequirement.xlsx',
           '1-Object_Description ', '2.2-Property_Requirements_Spec', '2.1-Property_Requirement_Shared', "0.1")
 result = sig.set_functional_categories()
-result = sig.get_objects(6, 116, suffix='sig')
+result = sig.get_objects(6, 46, suffix='sig')
 # print('\nTotal number of objects in {}: {}'.format(sig.Graph.n3(), result[0]))
 # print('Total number of triples: {}\n'.format(result[1]))
-sig.get_properties(12, 153)
+sig.get_properties(12, 1000, suffix='sig')
 sig.cast_to_rdf(R'C:\Users\amagn\OneDrive\Dev\DataRequirementsToRDF\SIG.ttl')

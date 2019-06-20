@@ -43,7 +43,8 @@ def to_name_en(s: str) -> Literal:
 	:param s:
 	:return:
 	"""
-
+	if s is None:
+		return('')
 	s = to_name(s)
 
 	# spot the 1st Chinese (or any other bizarre) character
@@ -61,6 +62,8 @@ def to_name_zh(s: str) -> Literal:
 	:param s:
 	:return:
 	"""
+	if s is None:
+		return('')
 	s = to_name(s)
 	# start with the 1st Chinese character
 	for i, char in enumerate(s):
