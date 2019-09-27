@@ -1,0 +1,1768 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix : <#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Air-core_coil_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "AC" ;
+    :HasNameEn "Air-core coil" ;
+    :HasNameZh "室外空心线圈" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI" .
+
+:Alarm_information a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BA Property group",
+        "TE Property group" ;
+    :CharacterizesObject :Balise_--_sig,
+        :Track_Circuit_--_sig ;
+    :HasDefinitionEn "the information for failure decription" ;
+    :HasDefinitionZh "故障信息描述。",
+        "故障描述。" ;
+    :HasId "BA-10",
+        "TC-23" ;
+    :HasNameEn "Alarm information" ;
+    :HasNameZh "报警信息" ;
+    :HasVersion "0.1" .
+
+:Alignment_point a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Location beside the track to which the signal shall be aligned in special cases." ;
+    :HasDefinitionZh "特殊情况下信号应对齐的轨道旁边的位置。" ;
+    :HasId "None" ;
+    :HasNameEn "Alignment point" ;
+    :HasNameZh "基准点" ;
+    :HasVersion "0.1" .
+
+:Alignment_point_distance a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Distance to the alignment point on the track which marks the target of the light beam. This information is meant to ensure visibility to the driver and is typically checked during the installation and testing phases." ;
+    :HasDefinitionZh "用光束标记目标点到轨道基准点的距离。此信息旨在确保驾驶员的可视性，通常在安装和测试阶段进行检查。" ;
+    :HasId "None" ;
+    :HasNameEn "Alignment point distance" ;
+    :HasNameZh "距基准点距离" ;
+    :HasVersion "0.1" .
+
+:Alignment_point_height a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Height to which the signal shall be aligned(target of the light beam)." ;
+    :HasDefinitionZh "信号机应对准的高度（光束目标点？）" ;
+    :HasId "None" ;
+    :HasNameEn "Alignment point height" ;
+    :HasNameZh "参考点高度" ;
+    :HasVersion "0.1" .
+
+:Approach_speed a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Speed of trains approaching the signal if different from the line speed." ;
+    :HasDefinitionZh "两条线路速度等级不同时，列车接近信号机时的速度要求。" ;
+    :HasId "None" ;
+    :HasNameEn "Approach speed" ;
+    :HasNameZh "接近速度" ;
+    :HasVersion "0.1" .
+
+:Aspect_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "AS" ;
+    :HasNameEn "Aspect" ;
+    :HasNameZh "显示信息" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI",
+        "Train control system" .
+
+:Assemble_description a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BAT Property group",
+        "UPS Property group" ;
+    :CharacterizesObject :Battery_--_sig,
+        :UPS_--_sig ;
+    :HasDefinitionEn "Instructions to guide installation" ;
+    :HasDefinitionZh "安装指导说明。" ;
+    :HasId "BAT-02",
+        "UPS-02" ;
+    :HasNameEn "Assemble description" ;
+    :HasNameZh "组成说明" ;
+    :HasVersion "0.1" .
+
+:Axle_counting_equipment_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "AX" ;
+    :HasNameEn "Axle counting equipment" ;
+    :HasNameZh "计轴设备" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI" .
+
+:Backboard_parameter a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Parameter of the signal backboard for high signals (diameter, width, height, type etc.)." ;
+    :HasDefinitionZh "高柱信号机背板参数信息（(直径、宽度、高度、型号等)）。" ;
+    :HasId "SI-10" ;
+    :HasNameEn "Backboard parameter" ;
+    :HasNameZh "卡盘的直径（针对高柱信号机）" ;
+    :HasVersion "0.1" .
+
+:Backboard_parameter_value a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Value of the backboard parameter." ;
+    :HasDefinitionZh "信号机背板尺寸信息。" ;
+    :HasId "SI-11" ;
+    :HasNameEn "Backboard parameter value" ;
+    :HasNameZh "卡盘尺寸值（针对高柱信号机）" ;
+    :HasVersion "0.1" .
+
+:Background_features a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Description of features that may present confusion risk such as station lights or road lights." ;
+    :HasDefinitionZh "描述那些可能带来混淆风险的特征物，例如车站灯光或路灯灯光。" ;
+    :HasId "None" ;
+    :HasNameEn "Background features" ;
+    :HasNameZh "背景特征" ;
+    :HasVersion "0.1" .
+
+:Banner_signal_required a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn """In case a repeater is needed: distance in meter to the banner repeater signal.
+Otherwise the value NO is given.""" ;
+    :HasDefinitionZh "如果需要复示信号：以米为单位标记旗复示信号距主体信号机的距离。否则赋值NO。" ;
+    :HasId "None" ;
+    :HasNameEn "Banner signal required" ;
+    :HasNameZh "旗信号" ;
+    :HasVersion "0.1" .
+
+:Block_system a "Functional Category" ;
+    :BelongsToDictionary "IFC 2019" ;
+    :HasNameEn "Block system" ;
+    :InDomainPackage "Signalling Package" ;
+    :Wikitext "Objects belonging to this category: {{#ask: [[Category:Object]] [[BelongsToDictionary::IFC_2019]] [[InFunctionalCategory::Block system]] | ?HasNameZh }}" .
+
+:Box_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "BO" ;
+    :HasNameEn "Box" ;
+    :HasNameZh "箱盒" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI",
+        "Train control system" .
+
+:CBI a "Functional Category" ;
+    :BelongsToDictionary "IFC 2019" ;
+    :HasNameEn "CBI" ;
+    :InDomainPackage "Signalling Package" ;
+    :Wikitext "Objects belonging to this category: {{#ask: [[Category:Object]] [[BelongsToDictionary::IFC_2019]] [[InFunctionalCategory::CBI]] | ?HasNameZh }}" .
+
+:CSA a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CW Property group" ;
+    :CharacterizesObject :Cable_and_Wire_--_sig ;
+    :HasDefinitionEn "Cross-sectional area, e.g. 40mm2, 70mm2" ;
+    :HasDefinitionZh "电缆横截面积，例如： 40mm2,70mm2。" ;
+    :HasId "CW-06" ;
+    :HasNameEn "CSA" ;
+    :HasNameZh "横截面积" ;
+    :HasVersion "0.1" .
+
+:Cabinet_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "CA" ;
+    :HasNameEn "Cabinet" ;
+    :HasNameZh "机柜" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI",
+        "Traffic dispatching system",
+        "Train control system" .
+
+:Cable_marker_post a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CW Property group" ;
+    :CharacterizesObject :Cable_and_Wire_--_sig ;
+    :HasDefinitionEn "It is a buried cable route indicator" ;
+    :HasDefinitionZh "表示地下埋有电缆的指示物。" ;
+    :HasId "CW-11" ;
+    :HasNameEn "Cable marker post" ;
+    :HasNameZh "电缆标桩" ;
+    :HasVersion "0.1" .
+
+:Cable_or_wire_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CW Property group" ;
+    :CharacterizesObject :Cable_and_Wire_--_sig ;
+    :HasDefinitionEn "the type of Cable or wire" ;
+    :HasDefinitionZh "None" ;
+    :HasId "CW-01" ;
+    :HasNameEn "Cable or wire type" ;
+    :HasNameZh "线缆类型" ;
+    :HasVersion "0.1" .
+
+:Cable_pit_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "CP" ;
+    :HasNameEn "Cable pit" ;
+    :HasNameZh "电缆井" ;
+    :HasVersion "0.1" .
+
+:Capacity_of_Power_supply_panel a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BAT Property group",
+        "UPS Property group" ;
+    :CharacterizesObject :Battery_--_sig,
+        :UPS_--_sig ;
+    :HasDefinitionEn "e.g  ≤1kVA, ≤10kVA" ;
+    :HasDefinitionZh "例如：≤1kVA, ≤10kVA" ;
+    :HasId "BAT-10",
+        "UPS-10" ;
+    :HasNameEn "Capacity of Power supply panel" ;
+    :HasNameZh "电源屏容量" ;
+    :HasVersion "0.1" .
+
+:Choking_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. none-choking, double choking..." ;
+    :HasDefinitionZh """例如：空扼流变压器，双扼流
+变压器""" ;
+    :HasId "TC-04" ;
+    :HasNameEn "Choking type" ;
+    :HasNameZh "扼流类型" ;
+    :HasVersion "0.1" .
+
+:Coding_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "coding or none-coding" ;
+    :HasDefinitionZh "电码化或非电码化轨道电路。" ;
+    :HasId "TC-03" ;
+    :HasNameEn "Coding type" ;
+    :HasNameZh "电码化类型,电码化/非电码化" ;
+    :HasVersion "0.1" .
+
+:Compensation_capacitor_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. box protection / track bed" ;
+    :HasDefinitionZh "例如：箱盒式或轨枕式补偿电容" ;
+    :HasId "TC-09" ;
+    :HasNameEn "Compensation capacitor type" ;
+    :HasNameZh "补偿电容类型" ;
+    :HasVersion "0.1" .
+
+:Conductor_rail_guard_board_required a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "For signal post telephone: Wether a guard board is provided (e. g. third rail electrification) " ;
+    :HasDefinitionZh "是否需要提供防护板（如果第三条铁路进行了电气化）" ;
+    :HasId "None" ;
+    :HasNameEn "Conductor rail guard board required" ;
+    :HasNameZh "导轨防护板" ;
+    :HasVersion "0.1" .
+
+:Confusion_with_other_signals a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Information if there is a possible confusion with other signals (yes, no, not applicable)." ;
+    :HasDefinitionZh "是否与其他信号机信号混淆（是、否、不适用）。" ;
+    :HasId "None" ;
+    :HasNameEn "Confusion with other signals" ;
+    :HasNameZh "信号混淆" ;
+    :HasVersion "0.1" .
+
+:Connection_length a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. 5m,10m,15m..." ;
+    :HasDefinitionZh "例如： 5m,10m,15m..." ;
+    :HasId "TC-19" ;
+    :HasNameEn "Connection length" ;
+    :HasNameZh "连接线长度" ;
+    :HasVersion "0.1" .
+
+:Contact_resistance a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "REL Property group" ;
+    :CharacterizesObject :Relay_--_sig ;
+    :HasDefinitionEn "Resistance when electrical node is closed" ;
+    :HasDefinitionZh "继电器节点闭合时的电阻。" ;
+    :HasId "REL-05" ;
+    :HasNameEn "Contact resistance" ;
+    :HasNameZh "接触电阻" ;
+    :HasVersion "0.1" .
+
+:Control_Panel_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CE Property group" ;
+    :CharacterizesObject :Control_Equipment_--_sig ;
+    :HasDefinitionEn "the type of Control Panel" ;
+    :HasDefinitionZh "控制台类型" ;
+    :HasId "CE-04" ;
+    :HasNameEn "Control Panel type" ;
+    :HasNameZh "控制台类型" ;
+    :HasVersion "0.1" .
+
+:Cross_sectional_area_of_jumper_or_connector a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn """e.g. 40mm2, 70mm2
+""" ;
+    :HasDefinitionZh "例如：40mm2, 70mm2。" ;
+    :HasId "TC-17" ;
+    :HasNameEn "Cross sectional area of jumper or connector" ;
+    :HasNameZh "跳线或连接线横截面积" ;
+    :HasVersion "0.1" .
+
+:Current a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CW Property group" ;
+    :CharacterizesObject :Cable_and_Wire_--_sig ;
+    :HasDefinitionEn "The current that the cable can withstand" ;
+    :HasDefinitionZh "电缆适用电流。" ;
+    :HasId "CW-10" ;
+    :HasNameEn "Current" ;
+    :HasNameZh "电流" ;
+    :HasVersion "0.1" .
+
+:Current_regulation_rate a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BAT Property group",
+        "UPS Property group" ;
+    :CharacterizesObject :Battery_--_sig,
+        :UPS_--_sig ;
+    :HasDefinitionEn "It shows the ability of DC regulated power supply to suppress the fluctuation of output voltage caused by the change of load current (output current) when the input voltage is constant." ;
+    :HasDefinitionZh """它表示当输入电压不变时，直
+流稳压电源对由于负载电流（输出电流）变化而引起的输出电压的波动的抑制能力。""" ;
+    :HasId "BAT-04",
+        "UPS-04" ;
+    :HasNameEn "Current regulation rate" ;
+    :HasNameZh "电流调整率" ;
+    :HasVersion "0.1" .
+
+:Derailment_maximum_speed_limit a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "DE Property group" ;
+    :CharacterizesObject :Derailer_--_sig ;
+    :HasDefinitionEn "Maximum allowable train speed for derailers，e.g.12km,15km" ;
+    :HasDefinitionZh "脱轨器允许列车最大允许速度。" ;
+    :HasId "DE-03" ;
+    :HasNameEn "Derailment maximum speed limit" ;
+    :HasNameZh "脱轨最大允许速度" ;
+    :HasVersion "0.1" .
+
+:Derailment_wheel_diameter a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "DE Property group" ;
+    :CharacterizesObject :Derailer_--_sig ;
+    :HasDefinitionEn "Wheel diameter requirements for differernt type rerailers " ;
+    :HasDefinitionZh "不同脱轨器对轮径要求。" ;
+    :HasId "DE-02" ;
+    :HasNameEn "Derailment wheel diameter" ;
+    :HasNameZh "脱轨轮直径" ;
+    :HasVersion "0.1" .
+
+:Detection zone a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BA Property group" ;
+    :CharacterizesObject :Balise_--_sig ;
+    :HasDefinitionEn "Physical range of data transmission between Balise and its receiver. e.g.15m" ;
+    :HasDefinitionZh "应答器与接收模块之间实现数据传输的物理范围。" ;
+    :HasId "BA-08" ;
+    :HasNameEn "Detection zone" ;
+    :HasNameZh "感应区域" ;
+    :HasVersion "0.1" .
+
+:Detector_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "DET" ;
+    :HasNameEn "Detector" ;
+    :HasNameZh "检测器" ;
+    :HasVersion "0.1" .
+
+:Display_distance a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "The maximum distance that can be displayed. The value relates only to the signal type, not to the circumstances at a special position." ;
+    :HasDefinitionZh "信号机能达到的大显示距离，该数值仅与信号机类型有关系，与所处环境及安装位置无关。" ;
+    :HasId "SI-04" ;
+    :HasNameEn "Display distance " ;
+    :HasNameZh "显示距离" ;
+    :HasVersion "0.1" .
+
+:Display_distance_required a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "The maximum distance that has to be displayed. The value relates only to the signal type, not to the circumstances at a special position." ;
+    :HasDefinitionZh "信号机必须满足的最大显示距离，该数值与信号机类型有关，与所处环境及安装位置无关。" ;
+    :HasId "SI-03" ;
+    :HasNameEn "Display distance required" ;
+    :HasNameZh "显示距离需求" ;
+    :HasVersion "0.1" .
+
+:Display_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Display type depending on the number of block sections the signal is valid for, e.g. 3/4/ 5-section display." ;
+    :HasDefinitionZh "显示类型取决于信号机色灯代表有效闭塞分区数目，例如3/4显示区间通过信号机。" ;
+    :HasId "SI-05" ;
+    :HasNameEn "Display type" ;
+    :HasNameZh "显示类型" ;
+    :HasVersion "0.1" .
+
+:Distance_to_stop_marks a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Distance from the signal to the nearest stop mark at a platform." ;
+    :HasDefinitionZh "由信号机至最近站台停车标的距离。" ;
+    :HasId "None" ;
+    :HasNameEn "Distance to stop marks" ;
+    :HasNameZh "到停车点的距离" ;
+    :HasVersion "0.1" .
+
+:Elevation_angle a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "e.g. for the dwarf signals, 3°-5°" ;
+    :HasDefinitionZh "例如：对于矮型信号机，仰角可以为33°-5°" ;
+    :HasId "SI-12" ;
+    :HasNameEn "Elevation angle" ;
+    :HasNameZh "仰角（针对矮柱信号机）" ;
+    :HasVersion "0.1" .
+
+:Energy_Package a "Domain_Package" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasNameEn "Energy Package" ;
+    :HasVersion "0.1" ;
+    :Wikitext "Functional categories in this Domain Package: {{#ask: [[Category:Functional Category]] [[BelongsToDictionary::IFC_2019]] [[InDomainPackage::Energy Package]] }}" .
+
+:Environment_temprature a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BA Property group" ;
+    :CharacterizesObject :Balise_--_sig ;
+    :HasDefinitionEn """The temperature range in which the transponder operates normally.
+e.g.-15℃~50℃""" ;
+    :HasDefinitionZh """应答器正常工作的环境温度，
+ 例如：-15℃~50℃。""" ;
+    :HasId "BA-09" ;
+    :HasNameEn "Environment temprature" ;
+    :HasNameZh "环境温度" ;
+    :HasVersion "0.1" .
+
+:External_locking_device_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "EL" ;
+    :HasNameEn "External locking device" ;
+    :HasNameZh "外锁闭装置" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "CBI" .
+
+:Fixing_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "Fixing property group" ;
+    :CharacterizesObject :Fixing_--_sig ;
+    :HasDefinitionEn "Type of the fixing (e. g. post., pole, gantry)." ;
+    :HasDefinitionZh "固定装置的类型（如柱、杆、门框）。" ;
+    :HasId "None" ;
+    :HasNameEn "Fixing type" ;
+    :HasNameZh "固定装置类型" ;
+    :HasVersion "0.1" .
+
+:Flame_retardant_wire_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CW Property group" ;
+    :CharacterizesObject :Cable_and_Wire_--_sig ;
+    :HasDefinitionEn "e.g. shielded wire" ;
+    :HasDefinitionZh """阻燃线类型，例如：低烟无卤
+电缆。""" ;
+    :HasId "CW-08" ;
+    :HasNameEn "Flame retardant wire type" ;
+    :HasNameZh "阻燃线类型" ;
+    :HasVersion "0.1" .
+
+:Hand_signalling_prohibited a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "For signal post telephone: If hand signalling is prohibited in case of any failure" ;
+    :HasDefinitionZh "为避免发生故障，禁止使用手信号？" ;
+    :HasId "None" ;
+    :HasNameEn "Hand signalling prohibited" ;
+    :HasNameZh "禁止使用手信号？" ;
+    :HasVersion "0.1" .
+
+:Height a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BA Property group",
+        "REL Property group" ;
+    :CharacterizesObject :Balise_--_sig,
+        :Relay_--_sig ;
+    :HasDefinitionEn "Height of the  relay",
+        "Height of the equipment" ;
+    :HasDefinitionZh "继电器高度。",
+        "设备高度。" ;
+    :HasId "BA-03",
+        "REL-09" ;
+    :HasNameEn "Height " ;
+    :HasNameZh "高",
+        "高度" ;
+    :HasVersion "0.1" .
+
+:High/dwarf_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Information if the signal is high or dwarf (ground mounted)." ;
+    :HasDefinitionZh "信号机高柱或者矮型信息（安装与地面）。" ;
+    :HasId "SI-08" ;
+    :HasNameEn "High/dwarf type" ;
+    :HasNameZh "高/矮类型" ;
+    :HasVersion "0.1" .
+
+:Hood_length a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Type of the cover of the signal lamp against glaring sun." ;
+    :HasDefinitionZh "遮蔽阳光的信号机遮檐的类型。" ;
+    :HasId "None" ;
+    :HasNameEn "Hood length" ;
+    :HasNameZh "信号机遮檐长度" ;
+    :HasVersion "0.1" .
+
+:Hot_strip_orientation a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Position of the hot strip which indicates the direction of the focus of the light beam and is given in terms like  \"left upper quadrant (LUQ)\" or \"5 o'clock \"." ;
+    :HasDefinitionZh "热条的位置表示光束焦点的方向，并以“左上象限（LUQ）”或“5点钟”等术语给出。" ;
+    :HasId "None" ;
+    :HasNameEn "Hot strip orientation" ;
+    :HasNameZh "热条方向？" ;
+    :HasVersion "0.1" .
+
+:Impedance_transformer_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "IT" ;
+    :HasNameEn "Impedance transformer" ;
+    :HasNameZh "扼流变压器" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI" .
+
+:Indicator_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Type of the indicators on a signal, e.g. route indicator, speed restriction indicator etc." ;
+    :HasDefinitionZh "信号机表示器类型，例如：进路表示器，限速表示器。" ;
+    :HasId "SI-13" ;
+    :HasNameEn "Indicator type" ;
+    :HasNameZh "表示器类型" ;
+    :HasVersion "0.1" .
+
+:Information_length a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BA Property group" ;
+    :CharacterizesObject :Balise_--_sig ;
+    :HasDefinitionEn "Bytes of the data Information, e.g.127 bytes" ;
+    :HasDefinitionZh """数据信息所占的字节数，
+例如：127字节""" ;
+    :HasId "BA-06" ;
+    :HasNameEn "Information length" ;
+    :HasNameZh "报文长度" ;
+    :HasVersion "0.1" .
+
+:Information_transmission_rate a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BA Property group" ;
+    :CharacterizesObject :Balise_--_sig ;
+    :HasDefinitionEn "Data transmission rate between Balise and the  receiving module" ;
+    :HasDefinitionZh """应答器与接收模块之间数据
+传输速率""" ;
+    :HasId "BA-05" ;
+    :HasNameEn "Information transmission rate" ;
+    :HasNameZh "报文传输速率" ;
+    :HasVersion "0.1" .
+
+:Input/output_device_of_track_circuit_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "None" ;
+    :HasNameEn "Input/output device of track circuit" ;
+    :HasNameZh "" ;
+    :HasVersion "0.1" .
+
+:Input_current a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BAT Property group",
+        "UPS Property group" ;
+    :CharacterizesObject :Battery_--_sig,
+        :UPS_--_sig ;
+    :HasDefinitionEn "Current input" ;
+    :HasDefinitionZh "输入电流" ;
+    :HasId "BAT-07",
+        "UPS-07" ;
+    :HasNameEn "Input current" ;
+    :HasNameZh "输入电流" ;
+    :HasVersion "0.1" .
+
+:Input_voltage_range a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BAT Property group",
+        "UPS Property group" ;
+    :CharacterizesObject :Battery_--_sig,
+        :UPS_--_sig ;
+    :HasDefinitionEn "Allowable input voltage range" ;
+    :HasDefinitionZh "允许输入电压范围" ;
+    :HasId "BAT-05",
+        "UPS-05" ;
+    :HasNameEn "Input voltage range" ;
+    :HasNameZh "输入电压范围" ;
+    :HasVersion "0.1" .
+
+:Installation_limit a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "PMD Property  group" ;
+    :CharacterizesObject :Point__machine_mounting_device_--_sig ;
+    :HasDefinitionEn "Installation requirements of point machine mouting device" ;
+    :HasDefinitionZh "转辙机安装装置的安装要求" ;
+    :HasId "PMD-01" ;
+    :HasNameEn "Installation limit " ;
+    :HasNameZh "安装限界" ;
+    :HasVersion "0.1" .
+
+:Installation_of_track a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. electrowelding" ;
+    :HasDefinitionZh "例如：电焊。" ;
+    :HasId "TC-15" ;
+    :HasNameEn "Installation of track" ;
+    :HasNameZh "钢轨安装方式" ;
+    :HasVersion "0.1" .
+
+:Installation_type_of_track_circuit_section a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. Double ended electrical insulation, One end electrical and one end mechanical..." ;
+    :HasDefinitionZh """例如：双端电气绝缘节、一端
+电气绝缘节一端机械绝缘节。""" ;
+    :HasId "TC-07" ;
+    :HasNameEn "Installation type of track circuit section" ;
+    :HasNameZh "轨道电路区段安装类型" ;
+    :HasVersion "0.1" .
+
+:Insulation_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "enhanced or ordinary" ;
+    :HasDefinitionZh "增强型或普通型。" ;
+    :HasId "TC-13" ;
+    :HasNameEn "Insulation type " ;
+    :HasNameZh "绝缘类型" ;
+    :HasVersion "0.1" .
+
+:Insulation_type_of_Air-core_coil a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "electrical or mechanical" ;
+    :HasDefinitionZh "电气或机械绝缘节" ;
+    :HasId "TC-08" ;
+    :HasNameEn "Insulation type of Air-core coil" ;
+    :HasNameZh "空芯线圈绝缘类型" ;
+    :HasVersion "0.1" .
+
+:Isolation_box_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. electrified 25HZ WGL-U (Chinese type)" ;
+    :HasDefinitionZh """例如：25HZ WGL-U 隔离盒
+（中国产品类型）""" ;
+    :HasId "TC-10" ;
+    :HasNameEn "Isolation box type" ;
+    :HasNameZh "隔离盒类型" ;
+    :HasVersion "0.1" .
+
+:LC_Barrier_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "LCB" ;
+    :HasNameEn "LC Barrier" ;
+    :HasNameZh "道口屏障" ;
+    :HasVersion "0.1" .
+
+:LC_Traffic_sign_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "LTS" ;
+    :HasNameEn "LC Traffic sign" ;
+    :HasNameZh "道口交通标志牌" ;
+    :HasVersion "0.1" .
+
+:LC_Traffic_signal_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "LTSL" ;
+    :HasNameEn "LC Traffic signal" ;
+    :HasNameZh "道口交通信号" ;
+    :HasVersion "0.1" .
+
+:Length a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BA Property group",
+        "CW Property group",
+        "REL Property group" ;
+    :CharacterizesObject :Balise_--_sig,
+        :Cable_and_Wire_--_sig,
+        :Relay_--_sig ;
+    :HasDefinitionEn "Length of a cable",
+        "Length of the equipment",
+        "length of the  relay" ;
+    :HasDefinitionZh "电缆长度。",
+        "继电器长度。",
+        "设备长度。" ;
+    :HasId "BA-01",
+        "CW-03",
+        "REL-07" ;
+    :HasNameEn "Length",
+        "Length " ;
+    :HasNameZh "长",
+        "长度" ;
+    :HasVersion "0.1" .
+
+:Lens_diffuser_orientation_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Orientation the lens diffuser has to have." ;
+    :HasDefinitionZh "透镜散射器的方向？" ;
+    :HasId "None" ;
+    :HasNameEn "Lens diffuser orientation type" ;
+    :HasNameZh "透镜散射方向类型？" ;
+    :HasVersion "0.1" .
+
+:Lens_diffuser_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Type of the lens diffuser the signal is equiped with." ;
+    :HasDefinitionZh "信号机所安装的透镜扩散器类型。" ;
+    :HasId "None" ;
+    :HasNameEn "Lens diffuser type " ;
+    :HasNameZh "透镜散射器型？" ;
+    :HasVersion "0.1" .
+
+:Limited_clearances a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "For signal post telephone: Tunnels, bridges, viaducts" ;
+    :HasDefinitionZh "例如:隧道、隧道、桥粱处信号机电话？" ;
+    :HasId "None" ;
+    :HasNameEn "Limited clearances" ;
+    :HasNameZh "间距限制？" ;
+    :HasVersion "0.1" .
+
+:Local_operation_device_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "LOD" ;
+    :HasNameEn "Local operation device" ;
+    :HasNameZh "本地操作装置" ;
+    :HasVersion "0.1" .
+
+:Lock_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "LO" ;
+    :HasNameEn "Lock" ;
+    :HasNameZh "锁" ;
+    :HasVersion "0.1" .
+
+:Lock_combination_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "LCO" ;
+    :HasNameEn "Lock combination" ;
+    :HasNameZh "组合锁" ;
+    :HasVersion "0.1" .
+
+:Lockable_device_release_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "LDE" ;
+    :HasNameEn "Lockable device release" ;
+    :HasNameZh "解锁装置？" ;
+    :HasVersion "0.1" .
+
+:Main_equipment a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CE Property group",
+        "TE Property group" ;
+    :CharacterizesObject :Control_Equipment_--_sig,
+        :Track_Circuit_--_sig ;
+    :HasDefinitionEn "Main equipment of track circuit",
+        "the main equipment " ;
+    :HasDefinitionZh "主要设备",
+        "轨道电路主要设备。" ;
+    :HasId "CE-02",
+        "TC-01" ;
+    :HasNameEn "Main equipment" ;
+    :HasNameZh "主要设备" ;
+    :HasVersion "0.1" .
+
+:Marker_--Sign_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "MA" ;
+    :HasNameEn "Marker --Sign" ;
+    :HasNameZh "标志牌" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI",
+        "Train control system" .
+
+:Number_of_cable_cores a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CW Property group" ;
+    :CharacterizesObject :Cable_and_Wire_--_sig ;
+    :HasDefinitionEn "e.g. 4,6,8,9,12,14,16,19..." ;
+    :HasDefinitionZh "例如：4,6,8,9,12,14,16,19..." ;
+    :HasId "CW-04" ;
+    :HasNameEn "Number of cable cores" ;
+    :HasNameZh "电缆芯线数" ;
+    :HasVersion "0.1" .
+
+:Number_of_lamps a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Number of lamps a signal is composed of." ;
+    :HasDefinitionZh "一架信号机灯位数量" ;
+    :HasId "SI-02" ;
+    :HasNameEn "Number of lamps" ;
+    :HasNameZh "灯位数量" ;
+    :HasVersion "0.1" .
+
+:Number_of_lamps_not_used a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Number of lamps which are not needed and blanked out (sealed), e.g. 0,1,2,3,4,5." ;
+    :HasDefinitionZh "信号机暂时不需要且封闭的等位数目。" ;
+    :HasId "SI-07" ;
+    :HasNameEn "Number of lamps not used" ;
+    :HasNameZh "封灯方式" ;
+    :HasVersion "0.1" .
+
+:Number_of_tracks_that_the_cable_crossing a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "None" ;
+    :CharacterizesObject :Cable_route_--_sig ;
+    :HasDefinitionEn "None" ;
+    :HasDefinitionZh "它指的是电缆走线的拓扑结构" ;
+    :HasId "None" ;
+    :HasNameEn "Number of tracks that the cable crossing " ;
+    :HasNameZh "跨越股道数" ;
+    :HasVersion "0.1" .
+
+:OLEMesh a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Wether an OLE mesh is required to protect the signal" ;
+    :HasDefinitionZh "是否需要OLE网格防护信号机" ;
+    :HasId "None" ;
+    :HasNameEn "OLEMesh" ;
+    :HasNameZh "OLE 网格" ;
+    :HasVersion "0.1" .
+
+:Outdoor_Compensation_capacitor_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "CC" ;
+    :HasNameEn "Outdoor Compensation capacitor" ;
+    :HasNameZh "室外补偿电容" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI" .
+
+:Output_current a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BAT Property group",
+        "UPS Property group" ;
+    :CharacterizesObject :Battery_--_sig,
+        :UPS_--_sig ;
+    :HasDefinitionEn "Current output" ;
+    :HasDefinitionZh "输出电流" ;
+    :HasId "BAT-08",
+        "UPS-08" ;
+    :HasNameEn "Output current" ;
+    :HasNameZh "输出电流" ;
+    :HasVersion "0.1" .
+
+:Output_voltage a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BAT Property group",
+        "UPS Property group" ;
+    :CharacterizesObject :Battery_--_sig,
+        :UPS_--_sig ;
+    :HasDefinitionEn " Voltage output" ;
+    :HasDefinitionZh "输出电压" ;
+    :HasId "BAT-06",
+        "UPS-06" ;
+    :HasNameEn "Output voltage" ;
+    :HasNameZh "输出电压" ;
+    :HasVersion "0.1" .
+
+:Passive_electronic_component_of_track_circuit_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "None" ;
+    :HasNameEn "Passive electronic component of track circuit" ;
+    :HasNameZh "" ;
+    :HasVersion "0.1" .
+
+:Point_closure_detector_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "PCD" ;
+    :HasNameEn "Point closure detector" ;
+    :HasNameZh "密贴检查器" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "CBI" .
+
+:Point_machine_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "PO" ;
+    :HasNameEn "Point machine" ;
+    :HasNameZh "转辙机" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "CBI" .
+
+:Post_height a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Height of the signal post, e.g. 8.5m, 11m." ;
+    :HasDefinitionZh "信号机机柱高度，例如：8.5m，11m。" ;
+    :HasId "SI-09" ;
+    :HasNameEn "Post height" ;
+    :HasNameZh "机柱高度" ;
+    :HasVersion "0.1" .
+
+:Power_supply_panel a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BAT Property group",
+        "UPS Property group" ;
+    :CharacterizesObject :Battery_--_sig,
+        :UPS_--_sig ;
+    :HasDefinitionEn "e.g. power-driven" ;
+    :HasDefinitionZh "例如：电力驱动电源屏" ;
+    :HasId "BAT-09",
+        "UPS-09" ;
+    :HasNameEn "Power supply panel" ;
+    :HasNameZh "电源屏类型" ;
+    :HasVersion "0.1" .
+
+:Protection_grade a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BA Property group" ;
+    :CharacterizesObject :Balise_--_sig ;
+    :HasDefinitionEn "IP is the international code used to identify the protection level. The IP level consists of two numbers. The first number is dust-proof; the second number is water-proof. The larger the number, the better the protection level." ;
+    :HasDefinitionZh """IP是用于区分防护级别的国际
+代码。 IP级别由两个数字组成。 第一个数字是防尘的; 第二个数字是防水的。 数字越大，保护等级越高。""" ;
+    :HasId "BA-07" ;
+    :HasNameEn "Protection grade" ;
+    :HasNameZh "防护等级" ;
+    :HasVersion "0.1" .
+
+:Pull-in_voltage a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "REL Property group" ;
+    :CharacterizesObject :Relay_--_sig ;
+    :HasDefinitionEn "Working voltage of relay in excitation state" ;
+    :HasDefinitionZh "励磁状态下继电器的工作电压" ;
+    :HasId "REL-03" ;
+    :HasNameEn "Pull-in voltage" ;
+    :HasNameZh "励磁电压" ;
+    :HasVersion "0.1" .
+
+:Rail_impedance a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "Resistance of the rail" ;
+    :HasDefinitionZh "轨道阻抗。" ;
+    :HasId "TC-21" ;
+    :HasNameEn "Rail impedance" ;
+    :HasNameZh "轨道阻抗" ;
+    :HasVersion "0.1" .
+
+:Rail_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. 43kg, 50kg, 60kg" ;
+    :HasDefinitionZh "例如：43kg, 50kg, 60kg。" ;
+    :HasId "TC-12" ;
+    :HasNameEn "Rail type" ;
+    :HasNameZh "钢轨类型（按公斤数）" ;
+    :HasVersion "0.1" .
+
+:Railway_ballast_resistance a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "It refers to the resistance between the ballast and the rail." ;
+    :HasDefinitionZh "道渣与轨道间电阻。" ;
+    :HasId "TC-22" ;
+    :HasNameEn "Railway ballast resistance" ;
+    :HasNameZh "道砟阻抗" ;
+    :HasVersion "0.1" .
+
+:Railway_detonator_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "RD" ;
+    :HasNameEn "Railway detonator" ;
+    :HasNameZh "铁路响墩（引爆装置）" ;
+    :HasVersion "0.1" .
+
+:Rated_voltage a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BAT Property group",
+        "UPS Property group" ;
+    :CharacterizesObject :Battery_--_sig,
+        :UPS_--_sig ;
+    :HasDefinitionEn "Rated voltage refers to the best voltage for electrical equipment to work normally for a long time." ;
+    :HasDefinitionZh """额定电压是指电气设备长时间
+正常工作的最佳电压。""" ;
+    :HasId "BAT-01",
+        "UPS-01" ;
+    :HasNameEn "Rated voltage" ;
+    :HasNameZh "额定电压" ;
+    :HasVersion "0.1" .
+
+:Read_through_risk_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Type of risk to read any other signal instead of the current one (yes, no, not applicable)." ;
+    :HasDefinitionZh "读取其他信号而不是当前信号机信号的风险类型（是，否，不适用）。" ;
+    :HasId "None" ;
+    :HasNameEn "Read through risk type" ;
+    :HasNameZh "可见风险类型？？" ;
+    :HasVersion "0.1" .
+
+:Release_voltage a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "REL Property group" ;
+    :CharacterizesObject :Relay_--_sig ;
+    :HasDefinitionEn "The maximum volatage to  guarantee the drop of relay node" ;
+    :HasDefinitionZh "确保继电器节点落下的电压。" ;
+    :HasId "REL-04" ;
+    :HasNameEn "Release voltage" ;
+    :HasNameZh "释放电压" ;
+    :HasVersion "0.1" .
+
+:Safety_handrail_required a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "For signal post telephone: Safety in the area of the signal" ;
+    :HasDefinitionZh "信号机范围内的安全" ;
+    :HasId "None" ;
+    :HasNameEn "Safety handrail required" ;
+    :HasNameZh "安全扶手" ;
+    :HasVersion "0.1" .
+
+:Section_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. main line" ;
+    :HasDefinitionZh "例如:正线。" ;
+    :HasId "TC-11" ;
+    :HasNameEn "Section type" ;
+    :HasNameZh "区段类型" ;
+    :HasVersion "0.1" .
+
+:Sheathed_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CW Property group" ;
+    :CharacterizesObject :Cable_and_Wire_--_sig ;
+    :HasDefinitionEn "External protection types of cables, e.g aluminium sheath …" ;
+    :HasDefinitionZh """电缆外部防护类型，例如：
+铝护套。""" ;
+    :HasId "CW-05" ;
+    :HasNameEn "Sheathed type" ;
+    :HasNameZh "护套类型" ;
+    :HasVersion "0.1" .
+
+:Signal_beyond_visible a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Information if the next signal is visible (yes, no, not applicable)." ;
+    :HasDefinitionZh "下一架信号机是否可视（是、否、不适用）。" ;
+    :HasId "None" ;
+    :HasNameEn "Signal beyond visible" ;
+    :HasNameZh "信号不可视性" ;
+    :HasVersion "0.1" .
+
+:Signal_fixing_reference a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "Fixing property group" ;
+    :CharacterizesObject :Fixing_--_sig ;
+    :HasDefinitionEn "Reference to a another fixing where the fixing is mounted on (e. g. a suspension structure is mounted on a gantry)." ;
+    :HasDefinitionZh "参考另一个安装在固定装置的设备（例如，悬挂结构安装在机架上）。" ;
+    :HasId "None" ;
+    :HasNameEn "Signal fixing reference" ;
+    :HasNameZh "信号机安装参考点" ;
+    :HasVersion "0.1" .
+
+:Signal_fixing_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "General information about the fixing of a signal (mainly used in early design phase and cost calculations)." ;
+    :HasDefinitionZh "关于信号机安装固定的一般信息（主要用于设计阶段与费用计算阶段）" ;
+    :HasId "None" ;
+    :HasNameEn "Signal fixing type" ;
+    :HasNameZh "信号机安装类型" ;
+    :HasVersion "0.1" .
+
+:Signal_frame_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "SF" ;
+    :HasNameEn "Signal frame" ;
+    :HasNameZh "信号机构" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI",
+        "Train control system" .
+
+:Signal_messages a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "All possible information available at this signal." ;
+    :HasDefinitionZh "信号机显示的所有可能信息。" ;
+    :HasId "SI-06" ;
+    :HasNameEn "Signal messages" ;
+    :HasNameZh "显示信息" ;
+    :HasVersion "0.1" .
+
+:Signal_post_telephone_location a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Description of the position of the telephone in relation to the associated signal (distance and offset from track)." ;
+    :HasDefinitionZh "描述电话相对于相关信号的位置（距离和距离的偏移）。" ;
+    :HasId "None" ;
+    :HasNameEn "Signal post telephone location" ;
+    :HasNameZh "信号机电话位置" ;
+    :HasVersion "0.1" .
+
+:Signal_post_telephone_reference a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Reference to the signal post telephone." ;
+    :HasDefinitionZh "信号机电话参考点" ;
+    :HasId "None" ;
+    :HasNameEn "Signal post telephone reference" ;
+    :HasNameZh "信号机电话参考点" ;
+    :HasVersion "0.1" .
+
+:Signal_post_telephone_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Type of the telephone, e.g. locked, direct line, dial phone." ;
+    :HasDefinitionZh "电话类型，例如：锁闭电话，正线电话，拨号电话？" ;
+    :HasId "None" ;
+    :HasNameEn "Signal post telephone type" ;
+    :HasNameZh "信号机电话类型" ;
+    :HasVersion "0.1" .
+
+:Signal_sighting_achievable a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Reading distance which is achievable with the help of mitigation works." ;
+    :HasDefinitionZh "？" ;
+    :HasId "None" ;
+    :HasNameEn "Signal sighting achievable" ;
+    :HasNameZh "？" ;
+    :HasVersion "0.1" .
+
+:Signal_sighting_available a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Reading distance without having any mitigation works." ;
+    :HasDefinitionZh "？" ;
+    :HasId "None" ;
+    :HasNameEn "Signal sighting available" ;
+    :HasNameZh "？" ;
+    :HasVersion "0.1" .
+
+:Signal_sighting_combined_with_repeater a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Combined reading distance for the signal and any associated repeaters." ;
+    :HasDefinitionZh "带有复示信号机的信号显示距离。？" ;
+    :HasId "None" ;
+    :HasNameEn "Signal sighting combined with repeater" ;
+    :HasNameZh "带有复示信号机的显示距离" ;
+    :HasVersion "0.1" .
+
+:Signal_sighting_minimum a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Minimal distance in which the signal has to be readable." ;
+    :HasDefinitionZh "信号机色灯信号可视最小距离" ;
+    :HasId "None" ;
+    :HasNameEn "Signal sighting minimum" ;
+    :HasNameZh "信号机最小可见距离" ;
+    :HasVersion "0.1" .
+
+:Signal_sighting_preferred a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Preferred distance in which the signal shall be readable." ;
+    :HasDefinitionZh "信号机色灯信号可视最佳距离" ;
+    :HasId "None" ;
+    :HasNameEn "Signal sighting preferred" ;
+    :HasNameZh "信号机可视最佳距离" ;
+    :HasVersion "0.1" .
+
+:Signal_sighting_route_indicator a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Required reading distance for the route indicator." ;
+    :HasDefinitionZh "要求线路表示器显示距离。" ;
+    :HasId "None" ;
+    :HasNameEn "Signal sighting route indicator" ;
+    :HasNameZh "信号进路表示器显示距离" ;
+    :HasVersion "0.1" .
+
+:Signal_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "the type of signal" ;
+    :HasDefinitionZh "信号机类型" ;
+    :HasId "SI-01" ;
+    :HasNameEn "Signal type" ;
+    :HasNameZh "信号机类型" ;
+    :HasVersion "0.1" .
+
+:Signal_viewing_minimum_in_front_of_signal a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Smallest distance where the signal has to be readable (for train very close to the signal)." ;
+    :HasDefinitionZh "信号可读的最小距离（对于非常接近信号机的列车）。" ;
+    :HasId "None" ;
+    :HasNameEn "Signal viewing minimum in front of signal" ;
+    :HasNameZh "信号机信号可视盲区？" ;
+    :HasVersion "0.1" .
+
+:Signalling_Package a "Domain_Package" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasNameEn "Signalling Package" ;
+    :HasVersion "0.1" ;
+    :Wikitext "Functional categories in this Domain Package: {{#ask: [[Category:Functional Category]] [[BelongsToDictionary::IFC_2019]] [[InDomainPackage::Signalling Package]] }}" .
+
+:Signalling_remote_Equipment_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "None" ;
+    :HasNameEn "Signalling remote Equipment" ;
+    :HasNameZh "" ;
+    :HasVersion "0.1" .
+
+:Special_position_arrangement a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "Type of special position the signal is placed." ;
+    :HasDefinitionZh "安装信号机特殊位置类型" ;
+    :HasId "None" ;
+    :HasNameEn "Special position arrangement" ;
+    :HasNameZh "特殊位置" ;
+    :HasVersion "0.1" .
+
+:Stations_view_all_staff_positions a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "If there are any obstructions effecting the sighting for the staff in the station" ;
+    :HasDefinitionZh "是否有障碍物影响车站工作人员的视线" ;
+    :HasId "None" ;
+    :HasNameEn "Stations view all staff positions" ;
+    :HasNameZh "车站工作人员视野？" ;
+    :HasVersion "0.1" .
+
+:Telecom_Package a "Domain_Package" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasNameEn "Telecom Package" ;
+    :HasVersion "0.1" ;
+    :Wikitext "Functional categories in this Domain Package: {{#ask: [[Category:Functional Category]] [[BelongsToDictionary::IFC_2019]] [[InDomainPackage::Telecom Package]] }}" .
+
+:Terminal_Equipment_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CE Property group" ;
+    :CharacterizesObject :Control_Equipment_--_sig ;
+    :HasDefinitionEn "the type of Terminal Equipment" ;
+    :HasDefinitionZh "终端类型" ;
+    :HasId "CE-01" ;
+    :HasNameEn "Terminal Equipment type" ;
+    :HasNameZh "终端类型" ;
+    :HasVersion "0.1" .
+
+:Terminal_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CW Property group" ;
+    :CharacterizesObject :Cable_and_Wire_--_sig ;
+    :HasDefinitionEn "e.g. Sleeve typing, Winding wire loop" ;
+    :HasDefinitionZh "例如：套管打字，绕线圈。" ;
+    :HasId "CW-12" ;
+    :HasNameEn "Terminal type" ;
+    :HasNameZh "线端类型" ;
+    :HasVersion "0.1" .
+
+:The_connection_method a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. Midpoint and rail connection 2m" ;
+    :HasDefinitionZh "例如：中点连接，连接线长度2m。" ;
+    :HasId "TC-20" ;
+    :HasNameEn "The connection method" ;
+    :HasNameZh "连接方式" ;
+    :HasVersion "0.1" .
+
+:The_number_of_cable a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CW Property group" ;
+    :CharacterizesObject :Cable_and_Wire_--_sig ;
+    :HasDefinitionEn "The number of core wires included in a cable, e.g. 6,12…" ;
+    :HasDefinitionZh "电缆芯线数目，例如：6,12…" ;
+    :HasId "CW-02" ;
+    :HasNameEn "The number of cable" ;
+    :HasNameZh "根数" ;
+    :HasVersion "0.1" .
+
+:The_type_of_Sending/Receiving_end a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "Track Circuit transmission or receiving end" ;
+    :HasDefinitionZh "轨道电路传输或接收端类型" ;
+    :HasId "TC-02" ;
+    :HasNameEn "The type of Sending/Receiving end " ;
+    :HasNameZh "送受类型，例如“一送一受、一送二受、一送三受”" ;
+    :HasVersion "0.1" .
+
+:Track_Package a "Domain_Package" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasNameEn "Track Package" ;
+    :HasVersion "0.1" ;
+    :Wikitext "Functional categories in this Domain Package: {{#ask: [[Category:Functional Category]] [[BelongsToDictionary::IFC_2019]] [[InDomainPackage::Track Package]] }}" .
+
+:Track_length a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. 12.5m or 25m" ;
+    :HasDefinitionZh "例如：12.5m or 25m。" ;
+    :HasId "TC-14" ;
+    :HasNameEn "Track length" ;
+    :HasNameZh "轨道长度" ;
+    :HasVersion "0.1" .
+
+:Traffic_dispatching_system a "Functional Category" ;
+    :BelongsToDictionary "IFC 2019" ;
+    :HasNameEn "Traffic dispatching system" ;
+    :InDomainPackage "Signalling Package" ;
+    :Wikitext "Objects belonging to this category: {{#ask: [[Category:Object]] [[BelongsToDictionary::IFC_2019]] [[InFunctionalCategory::Traffic dispatching system]] | ?HasNameZh }}" .
+
+:Train_Protection_equipment_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "TPE" ;
+    :HasNameEn "Train Protection equipment" ;
+    :HasNameZh "列车防护设备" ;
+    :HasVersion "0.1" .
+
+:Train_control_system a "Functional Category" ;
+    :BelongsToDictionary "IFC 2019" ;
+    :HasNameEn "Train control system" ;
+    :InDomainPackage "Signalling Package" ;
+    :Wikitext "Objects belonging to this category: {{#ask: [[Category:Object]] [[BelongsToDictionary::IFC_2019]] [[InFunctionalCategory::Train control system]] | ?HasNameZh }}" .
+
+:Transformer_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "TR" ;
+    :HasNameEn "Transformer" ;
+    :HasNameZh "变压器" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI" .
+
+:Tuning_&_matching_unit_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "TM" ;
+    :HasNameEn "Tuning & matching unit" ;
+    :HasNameZh "匹配调谐单元" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI" .
+
+:Type_of_railway_electrification a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "electrification or none-electrification" ;
+    :HasDefinitionZh "电化或非电化。" ;
+    :HasId "TC-16" ;
+    :HasNameEn "Type of railway electrification" ;
+    :HasNameZh "电化方式" ;
+    :HasVersion "0.1" .
+
+:Type_of_turnout a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "manganese steel / combination" ;
+    :HasDefinitionZh "锰钢/合金" ;
+    :HasId "TC-18" ;
+    :HasNameEn "Type of turnout" ;
+    :HasNameZh "道岔类型" ;
+    :HasVersion "0.1" .
+
+:Vehicle_stop_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "VS" ;
+    :HasNameEn "Vehicle stop" ;
+    :HasNameZh "停车设备" ;
+    :HasVersion "0.1" .
+
+:Voltage a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CW Property group" ;
+    :CharacterizesObject :Cable_and_Wire_--_sig ;
+    :HasDefinitionEn "It indicates the wire-to-ground (metal sheath) insulation voltage or the insulation voltage between the wires." ;
+    :HasDefinitionZh """它表示电线对地(金属护套)绝缘
+电压或电线之间的绝缘电压。""" ;
+    :HasId "CW-09" ;
+    :HasNameEn "Voltage" ;
+    :HasNameZh "电压" ;
+    :HasVersion "0.1" .
+
+:Voltage_regulation_rate a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BAT Property group",
+        "UPS Property group" ;
+    :CharacterizesObject :Battery_--_sig,
+        :UPS_--_sig ;
+    :HasDefinitionEn "When the input side voltage changes from the lowest allowable input value to the specified maximum value, the relative change value of the output voltage is the percentage of the rated output voltage." ;
+    :HasDefinitionZh "当输入侧电压从最低允许输入值变为规定的最大值时，输出电压的相对变化是电压调整率。" ;
+    :HasId "BAT-03",
+        "UPS-03" ;
+    :HasNameEn "Voltage regulation rate" ;
+    :HasNameZh "电压调整率" ;
+    :HasVersion "0.1" .
+
+:Walkway a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "SI Property group" ;
+    :CharacterizesObject :Signal_--_sig ;
+    :HasDefinitionEn "For signal post telephone: Wether a walkway is provided (details)" ;
+    :HasDefinitionZh "是否有通道要求" ;
+    :HasId "None" ;
+    :HasNameEn "Walkway" ;
+    :HasNameZh "通道" ;
+    :HasVersion "0.1" .
+
+:Weight a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BA Property group" ;
+    :CharacterizesObject :Balise_--_sig ;
+    :HasDefinitionEn "Weight of the equipment" ;
+    :HasDefinitionZh "设备重量。" ;
+    :HasId "BA-04" ;
+    :HasNameEn "Weight" ;
+    :HasNameZh "重量" ;
+    :HasVersion "0.1" .
+
+:Width a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "BA Property group",
+        "REL Property group" ;
+    :CharacterizesObject :Balise_--_sig,
+        :Relay_--_sig ;
+    :HasDefinitionEn "Width of the  relay",
+        "Width of the equipment" ;
+    :HasDefinitionZh "继电器宽度。",
+        "设备宽度。" ;
+    :HasId "BA-02",
+        "REL-08" ;
+    :HasNameEn "Width " ;
+    :HasNameZh "宽",
+        "宽度" ;
+    :HasVersion "0.1" .
+
+:Wire_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CW Property group" ;
+    :CharacterizesObject :Cable_and_Wire_--_sig ;
+    :HasDefinitionEn "e.g. ZR-RV, ZR-BVR (Chinese type)" ;
+    :HasDefinitionZh """电缆类型，例如： ZR-RV, 
+ZR-BVR (中国电缆类型)""" ;
+    :HasId "CW-07" ;
+    :HasNameEn "Wire type" ;
+    :HasNameZh "电线类型" ;
+    :HasVersion "0.1" .
+
+:Working_current a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "REL Property group" ;
+    :CharacterizesObject :Relay_--_sig ;
+    :HasDefinitionEn "Working current is determined by electrical resistance and working voltage, and it is a fixed value." ;
+    :HasDefinitionZh """工作电流由电阻和工作电压决
+定，它是一个固定值。""" ;
+    :HasId "REL-02" ;
+    :HasNameEn "Working current " ;
+    :HasNameZh "工作电流" ;
+    :HasVersion "0.1" .
+
+:Working_voltage a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "REL Property group" ;
+    :CharacterizesObject :Relay_--_sig ;
+    :HasDefinitionEn "When electrical equipment works, the actual voltage at both ends is called working voltage." ;
+    :HasDefinitionZh """电气设备工作时，两端的实际
+电压称为工作电压。""" ;
+    :HasId "REL-01" ;
+    :HasNameEn "Working voltage " ;
+    :HasNameZh "工作电压" ;
+    :HasVersion "0.1" .
+
+:applied_line_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "DE Property group" ;
+    :CharacterizesObject :Derailer_--_sig ;
+    :HasDefinitionEn "e.g. 43kg/m, 50kg/m" ;
+    :HasDefinitionZh "例如：43kg/m, 50kg/m。" ;
+    :HasId "DE-04" ;
+    :HasNameEn "applied line type" ;
+    :HasNameZh "线路类型" ;
+    :HasVersion "0.1" .
+
+:derailment_block_height_in__protection_state a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "DE Property group" ;
+    :CharacterizesObject :Derailer_--_sig ;
+    :HasDefinitionEn "Height of derailment block when derailer in protection state" ;
+    :HasDefinitionZh "防护状态下脱轨块高度" ;
+    :HasId "DE-01" ;
+    :HasNameEn """ derailment block height in 
+protection state""" ;
+    :HasNameZh "防护状态下脱轨块高度" ;
+    :HasVersion "0.1" .
+
+:device_type a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "PMD Property  group" ;
+    :CharacterizesObject :Point__machine_mounting_device_--_sig ;
+    :HasDefinitionEn "Type of  point machine mouting device，which is corresponding to the type of point machine" ;
+    :HasDefinitionZh "转辙机安装装置，它与转辙机类型对应。" ;
+    :HasId "PMD-02" ;
+    :HasNameEn """device type
+（Corresponding to the type of point machine）""" ;
+    :HasNameZh "装置类型" ;
+    :HasVersion "0.1" .
+
+:insulation_resistance a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "REL Property group" ;
+    :CharacterizesObject :Relay_--_sig ;
+    :HasDefinitionEn "Resistance when electrical node is open" ;
+    :HasDefinitionZh "继电器节点断开时的电阻。" ;
+    :HasId "REL-06" ;
+    :HasNameEn "insulation resistance" ;
+    :HasNameZh "绝缘电阻" ;
+    :HasVersion "0.1" .
+
+:level_of_Ampere a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. 400A, 600A, 800A..." ;
+    :HasDefinitionZh "例如：400A, 600A, 800A…" ;
+    :HasId "TC-05" ;
+    :HasNameEn "level of Ampere" ;
+    :HasNameZh "安培等级" ;
+    :HasVersion "0.1" .
+
+:level_of_Choking a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "TE Property group" ;
+    :CharacterizesObject :Track_Circuit_--_sig ;
+    :HasDefinitionEn "e.g. BE-400/25, BE-600/25..." ;
+    :HasDefinitionZh "例如： BE-400/25, BE-600/25…" ;
+    :HasId "TC-06" ;
+    :HasNameEn "level of Choking" ;
+    :HasNameZh "扼流等级" ;
+    :HasVersion "0.1" .
+
+:the_quantity_of_cell_blocks a "Property" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :BelongsToGroup "CE Property group" ;
+    :CharacterizesObject :Control_Equipment_--_sig ;
+    :HasDefinitionEn "e.g. ≤40, ≤70..." ;
+    :HasDefinitionZh "例如： ≤40, ≤70…" ;
+    :HasId "CE-05" ;
+    :HasNameEn "the quantity of cell blocks" ;
+    :HasNameZh "横向单元块数量" ;
+    :HasVersion "0.1" .
+
+:Cable_route_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "CR" ;
+    :HasNameEn "Cable route" ;
+    :HasNameZh "电缆路径" ;
+    :HasVersion "0.1" .
+
+:Fixing_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "FI" ;
+    :HasNameEn "Fixing" ;
+    :HasNameZh "设备固定配件" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI",
+        "Train control system" .
+
+:Point__machine_mounting_device_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "PMD" ;
+    :HasNameEn "Point  machine mounting device" ;
+    :HasNameZh "转辙机安装装置" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "CBI" .
+
+:Control_Equipment_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "CE" ;
+    :HasNameEn "Control Equipment" ;
+    :HasNameZh "控制设备" ;
+    :HasVersion "0.1" .
+
+:Derailer_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "DE" ;
+    :HasNameEn "Derailer" ;
+    :HasNameZh "脱轨器" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "CBI" .
+
+:Relay_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "REL" ;
+    :HasNameEn "Relay" ;
+    :HasNameZh "继电器" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI",
+        "Train control system" .
+
+:Balise_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "BA" ;
+    :HasNameEn "Balise" ;
+    :HasNameZh "应答器" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Train control system" .
+
+:Battery_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "BAT" ;
+    :HasNameEn "Battery" ;
+    :HasNameZh "电池" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI",
+        "Traffic dispatching system",
+        "Train control system" .
+
+:UPS_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "UPS" ;
+    :HasNameEn "UPS" ;
+    :HasNameZh "不间断电源" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI",
+        "Traffic dispatching system",
+        "Train control system" .
+
+:Cable_and_Wire_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "CW" ;
+    :HasNameEn "Cable and Wire" ;
+    :HasNameZh "线缆" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI",
+        "Traffic dispatching system",
+        "Train control system" .
+
+:Track_Circuit_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "TC" ;
+    :HasNameEn "Track Circuit" ;
+    :HasNameZh "轨道电路" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI" .
+
+:Signal_--_sig a "Object" ;
+    :BelongsToDictionary "IFC_2019" ;
+    :HasId "SI" ;
+    :HasNameEn "Signal" ;
+    :HasNameZh "色灯信号机" ;
+    :HasVersion "0.1" ;
+    :InFunctionalCategory "Block system",
+        "CBI",
+        "Train control system" .
+
